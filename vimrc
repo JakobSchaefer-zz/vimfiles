@@ -128,6 +128,9 @@ nmap gl <c-w>l
 nmap <C-l> gt
 nmap <C-h> gT
 
+nmap <leader>f <leader><leader>f
+nmap <leader>F <leader><leader>F
+
 nnoremap k gk
 nnoremap j gj
 nnoremap l gl

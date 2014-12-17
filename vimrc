@@ -12,6 +12,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'msanders/snipmate.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tomasr/molokai'
 
 call vundle#end()
 

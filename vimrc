@@ -13,6 +13,7 @@ Plugin 'msanders/snipmate.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 

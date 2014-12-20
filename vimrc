@@ -134,8 +134,6 @@ nmap <leader>F <leader><leader>F
 
 nnoremap k gk
 nnoremap j gj
-nnoremap l gl
-nnoremap h gh
 
 nmap J 5j
 nmap K 5k

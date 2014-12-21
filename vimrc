@@ -72,8 +72,8 @@ set noswapfile
 " TABS UND ZEILENUMBRUECHE
 set smarttab
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set linebreak
 set tw=500 " Zeilenumbruch nach 500 Zeichen
 set autoindent

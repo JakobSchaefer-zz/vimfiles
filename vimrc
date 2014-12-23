@@ -34,6 +34,8 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=1
+set lines=43
+set columns=132
 
 let mapleader = ","
 
@@ -99,10 +101,6 @@ inoremap <right> <Nop>
 inoremap <up> <Nop>
 
 imap <leader>l <ESC>la
-imap <leader><leader>; <ESC>A;<CR>
-
-" BEASTMODE ON!!!!!
-imap jj <ESC>
 
 """""""""""""""""""" NORMALMODE
 nmap tn :tabnew<CR>

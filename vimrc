@@ -99,6 +99,7 @@ inoremap <right> <Nop>
 inoremap <up> <Nop>
 
 imap <leader>l <ESC>la
+imap <leader><leader>; <ESC>A;<CR>
 
 " BEASTMODE ON!!!!!
 imap jj <ESC>

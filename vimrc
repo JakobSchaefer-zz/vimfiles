@@ -34,8 +34,8 @@ set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=1
-set lines=43
-set columns=132
+set lines=50
+set columns=140
 
 let mapleader = ","
 

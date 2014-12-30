@@ -35,7 +35,7 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=1
 set lines=50
-set columns=140
+set columns=125
 
 let mapleader = ","
 
@@ -101,6 +101,13 @@ inoremap <right> <Nop>
 inoremap <up> <Nop>
 
 imap <leader>l <ESC>la
+imap <leader>k <ESC>O<ESC>ji
+imap <leader>j <ESC>o<ESC>ki
+
+imap <leader>O <ESC>O
+imap <leader>o <ESC>o
+imap <leader>A <ESC>A
+imap <leader>I <ESC>I
 
 """""""""""""""""""" NORMALMODE
 nmap tn :tabnew<CR>

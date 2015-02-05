@@ -6,7 +6,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+"Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
 Plugin 'msanders/snipmate.vim'
@@ -84,40 +84,51 @@ set smartindent
 set wrap
 
 """""""""""""""""""" VISUALMODUS
+" Deaktiviert die Pfeiltasten
 vnoremap <down> <Nop>
 vnoremap <left> <Nop>
 vnoremap <right> <Nop>
 vnoremap <up> <Nop>
-
-"""""""""""""""""""" INPUTMODUS
-imap <leader>' ''<ESC>i
-imap <leader>" ""<ESC>i
-imap <leader>( ()<ESC>i
-imap <leader>[ []<ESC>i
-imap <leader>{ {}<ESC>i
-
 inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
 
-imap <leader>l <ESC>la
-imap <leader>k <ESC>O<ESC>ji
-imap <leader>j <ESC>o<ESC>ki
+"""""""""""""""""""" INPUTMODUS
+" Testweise ausprobieren für Umlaute
+" Kuerzel
+imap ae ä
+imap oe ö
+imap ue ü
 
+" Klammerpaare
+imap <leader>' ''<ESC>i
+imap <leader>" ""<ESC>i
+imap <leader>( ()<ESC>i
+imap <leader>[ []<ESC>i
+imap <leader>{ {}<ESC>i
+imap <leader>< <><ESC>i
+
+" Brauche ich um nach den Klammerungen weiter zu tippen
+imap <leader>l <ESC>la
+
+" Etwas bessere Navigation mit im Input-Modus
 imap <leader>O <ESC>O
 imap <leader>o <ESC>o
 imap <leader>A <ESC>A
 imap <leader>I <ESC>I
 
-"""""""""""""""""""" NORMALMODE
-nmap tn :tabnew<CR>
-nmap tc :tabclose<CR>
+" BEASTMODE ON
+map <leader><CR> <ESC>
 
-noremap <down> ddp
+"""""""""""""""""""" NORMALMODE
+map <leader>k <ESC>O<ESC>ji
+map <leader>j <ESC>o<ESC>ki
+
+noremap <down> <Nop>
 noremap <left> <Nop>
 noremap <right> <Nop>
-noremap <up> ddkP
+noremap <up> <Nop>
 
 nmap :Q :q
 nmap :W :w
@@ -126,6 +137,7 @@ nnoremap cw bcw
 
 nmap <leader>w :w!<CR>
 nmap <leader>q :q<CR>
+nmap <leader><leader>q :q!<CR>
 nmap ! :w<CR>:!
 
 nmap gk <C-w>k
@@ -153,3 +165,4 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 " MAKE!!
 nmap <leader>m :w!<CR>:!make 
+

@@ -38,7 +38,7 @@ set nofoldenable
 set foldlevel=1
 set lines=50
 set columns=125
-set updatetime=1000
+set updatetime=750
 
 let mapleader = ","
 
@@ -97,10 +97,10 @@ inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
-noremap <down> <Nop>
+nmap <down> <Plug>GitGutterNextHunk
 noremap <left> <Nop>
 noremap <right> <Nop>
-noremap <up> <Nop>
+nmap <up> <Plug>GitGutterPrevHunk
 
 """""""""""""""""""" INPUTMODUS
 " Testweise ausprobieren für Umlaute
@@ -189,6 +189,7 @@ nmap <leader>re :Gread<CR>
 nmap <leader>co :Gcommit<CR>
 nmap <leader>pu :Gpush<CR>
 nmap <leader>st :Gstatus<CR>
+nmap <leader>di :Gvdiff<CR>
 
 " Kleine Abkürzungen
 iabbr cfhead /*<CR>File:<CR>Date:<CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>

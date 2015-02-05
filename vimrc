@@ -22,6 +22,7 @@ filetype plugin indent on
 """"""""""""""""""""
 " Plugineinstellungen
 let g:airline_powerline_fonts = 1
+let g:gitgutter_sign_column_always = 1
 
 " BASIS
 set history=1000
@@ -37,7 +38,7 @@ set nofoldenable
 set foldlevel=1
 set lines=50
 set columns=125
-set updatetime=100
+set updatetime=1000
 
 let mapleader = ","
 

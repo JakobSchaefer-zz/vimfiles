@@ -93,6 +93,10 @@ inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
+noremap <down> <Nop>
+noremap <left> <Nop>
+noremap <right> <Nop>
+noremap <up> <Nop>
 
 """""""""""""""""""" INPUTMODUS
 " Testweise ausprobieren für Umlaute
@@ -118,6 +122,7 @@ imap <leader>o <ESC>o
 imap <leader>A <ESC>A
 imap <leader>I <ESC>I
 
+" Ermöglicht es bequem Leerzeilen einzufügen
 imap <leader>k <ESC>O<ESC>ji
 imap <leader>j <ESC>o<ESC>ki
 
@@ -125,40 +130,46 @@ imap <leader>j <ESC>o<ESC>ki
 imap jk <ESC>
 
 """""""""""""""""""" NORMALMODE
+" Ermöglicht es bequem Leerzeilen einzufügen
 map <leader>k <ESC>O<ESC>j
 map <leader>j <ESC>o<ESC>k
 
-noremap <down> <Nop>
-noremap <left> <Nop>
-noremap <right> <Nop>
-noremap <up> <Nop>
-
+" Bessert kleine Flüchtigkeitsfehler aus
 nmap :Q :q
 nmap :W :w
 
+" cw um ein ganzes Wort auszubessern
 nnoremap cw bcw
 
+" Schnelles speichern und schliessen von Dokumenten
 nmap <leader>w :w!<CR>
 nmap <leader>q :q<CR>
 nmap <leader><leader>q :q!<CR>
 nmap ! :w<CR>:!
 
+" Navigation innerhalb von Splitts
 nmap gk <C-w>k
 nmap gj <C-w>j
 nmap gh <C-w>h
 nmap gl <c-w>l
 
+" Navigation innerhalb von Taps
 nmap <C-l> gt
-nmap <C-h> gT
+nmap <C-h> gT>
 
+" Easymotion etwas schneller daruch
 nmap <leader>f <leader><leader>f
 nmap <leader>F <leader><leader>F
 
+" Navigation überspringt nun keine Zeilenumbrüche
 nnoremap k gk
 nnoremap j gj
 
+" Intuitivere Navigation mit shift
 nmap J 5j
 nmap K 5k
+nmap L e
+nmap H b
 
 " SUCHE
 nmap <space> /
@@ -166,11 +177,16 @@ nmap <leader><space> :noh<CR>
 
 nmap <C-n> :NERDTreeToggle<CR>
 
-" MAKE!!
+" MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make 
+nmap <leader>add :Gwrite<CR>
+nmap <leader>co :Gcommit<CR>
+nmap <leader>push :Gpush<CR>
 
+" Kleine Abkürzungen
 iabbr cfhead /*<CR>File:<CR>Date:<CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>
 
+" vimrc autoreload
 augroup reload_vimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC source $MYVIMRC

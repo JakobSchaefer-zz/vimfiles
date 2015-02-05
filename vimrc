@@ -54,6 +54,7 @@ set cmdheight=2
 set laststatus=2
 syntax on
 set cursorline
+set t_Co=256
 
 " STATUSBAR
 set statusline-=%t

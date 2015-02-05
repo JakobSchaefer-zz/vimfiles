@@ -172,8 +172,10 @@ nnoremap j gj
 " Intuitivere Navigation mit shift
 nmap J }
 nmap K {
-nmap L E
-nmap H B
+nnoremap L E
+nnoremap H B
+nmap l e
+nmap h b
 
 " SUCHE
 nmap <space> /

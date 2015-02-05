@@ -118,12 +118,15 @@ imap <leader>o <ESC>o
 imap <leader>A <ESC>A
 imap <leader>I <ESC>I
 
+imap <leader>k <ESC>O<ESC>ji
+imap <leader>j <ESC>o<ESC>ki
+
 " BEASTMODE ON
-map <leader><CR> <ESC>
+imap jk <ESC>
 
 """""""""""""""""""" NORMALMODE
-map <leader>k <ESC>O<ESC>ji
-map <leader>j <ESC>o<ESC>ki
+map <leader>k <ESC>O<ESC>j
+map <leader>j <ESC>o<ESC>k
 
 noremap <down> <Nop>
 noremap <left> <Nop>
@@ -166,3 +169,9 @@ nmap <C-n> :NERDTreeToggle<CR>
 " MAKE!!
 nmap <leader>m :w!<CR>:!make 
 
+iabbr cfhead /*<CR>File:<CR>Date:<CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>
+
+augroup reload_vimrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END

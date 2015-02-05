@@ -14,12 +14,13 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
-
+" Plugineinstellungen
 let g:airline_powerline_fonts = 1
 
 " BASIS
@@ -36,6 +37,7 @@ set nofoldenable
 set foldlevel=1
 set lines=50
 set columns=125
+set updatetime=100
 
 let mapleader = ","
 
@@ -180,10 +182,12 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make 
-nmap <leader>add :Gwrite<CR>
+
+nmap <leader>ad :Gwrite<CR>
+nmap <leader>re :Gread<CR>
 nmap <leader>co :Gcommit<CR>
-nmap <leader>push :Gpush<CR>
-nmap <leader>s :Gstatus<CR>
+nmap <leader>pu :Gpush<CR>
+nmap <leader>st :Gstatus<CR>
 
 " Kleine Abkürzungen
 iabbr cfhead /*<CR>File:<CR>Date:<CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>

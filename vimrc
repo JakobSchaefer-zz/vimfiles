@@ -170,8 +170,8 @@ nnoremap k gk
 nnoremap j gj
 
 " Intuitivere Navigation mit shift
-nmap J 5j
-nmap K 5k
+nmap J }
+nmap K {
 nmap L E
 nmap H B
 

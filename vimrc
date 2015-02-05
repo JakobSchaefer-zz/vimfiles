@@ -182,6 +182,7 @@ nmap <leader>m :w!<CR>:!make
 nmap <leader>add :Gwrite<CR>
 nmap <leader>co :Gcommit<CR>
 nmap <leader>push :Gpush<CR>
+nmap <leader>s :Gstatus<CR>
 
 " Kleine Abkürzungen
 iabbr cfhead /*<CR>File:<CR>Date:<CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>

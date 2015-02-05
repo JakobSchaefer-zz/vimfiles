@@ -66,6 +66,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
+hi MatchParen cterm=bold ctermbg=none ctermfg=blue
 
 " SICHERUNGEN
 set nobackup

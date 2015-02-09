@@ -13,6 +13,7 @@ set guioptions-=L  "remove left-hand scroll bar
     set guifont=Consolas:h11:cANSI
   endif
 endif
+
 """"""""""""""""""""
 " VUNDLE
 set nocompatible
@@ -126,12 +127,12 @@ imap oe ö
 imap ue ü
 
 " Klammerpaare
-imap <leader>' ''<ESC>i
-imap <leader>" ""<ESC>i
-imap <leader>( ()<ESC>i
-imap <leader>[ []<ESC>i
-imap <leader>{ {}<ESC>i
-imap <leader>< <><ESC>i
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
 
 " Brauche ich um nach den Klammerungen weiter zu tippen
 imap <leader>l <ESC>la

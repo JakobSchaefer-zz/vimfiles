@@ -22,24 +22,15 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'scrooloose/nerdtree'
-Plugin 'msanders/snipmate.vim'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
-" Plugineinstellungen
-let g:airline_powerline_fonts = 1
-let g:gitgutter_sign_column_always = 1
-
 " BASIS
 set history=1000
 set autoread
@@ -114,10 +105,10 @@ inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
-nmap <down> <Plug>GitGutterNextHunk
+nmap <down> <Nop>
 noremap <left> <Nop>
 noremap <right> <Nop>
-nmap <up> <Plug>GitGutterPrevHunk
+nmap <up> <Nop>
 
 """""""""""""""""""" INPUTMODUS
 " Testweise ausprobieren für Umlaute
@@ -195,8 +186,6 @@ nnoremap H B
 " SUCHE
 nmap <space> /
 nmap <leader><space> :noh<CR>
-
-nmap <C-n> :NERDTreeToggle<CR>
 
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make

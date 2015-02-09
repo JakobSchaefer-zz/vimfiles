@@ -1,3 +1,5 @@
+"""""""""""""""""""""""""""""""""
+" gvim settings
 if has("gui_running")
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
@@ -83,6 +85,7 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
+match Title /TODO/
 
 " SICHERUNGEN
 set nobackup
@@ -196,6 +199,8 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make
+
+nmap <F5> :!build<CR>
 
 nmap <leader>ad :Gwrite<CR>
 nmap <leader>re :Gread<CR>

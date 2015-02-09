@@ -1,3 +1,16 @@
+if has("gui_running")
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
 """"""""""""""""""""
 " VUNDLE
 set nocompatible
@@ -174,8 +187,6 @@ nmap J }
 nmap K {
 nnoremap L E
 nnoremap H B
-nmap l e
-nmap h b
 
 " SUCHE
 nmap <space> /
@@ -184,7 +195,7 @@ nmap <leader><space> :noh<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 
 " MAKE UND GIT!!
-nmap <leader>m :w!<CR>:!make 
+nmap <leader>m :w!<CR>:!make
 
 nmap <leader>ad :Gwrite<CR>
 nmap <leader>re :Gread<CR>
@@ -194,7 +205,7 @@ nmap <leader>st :Gstatus<CR>
 nmap <leader>di :Gvdiff<CR>
 
 " Kleine Abkürzungen
-iabbr cfhead /*<CR>File:<CR>Date:<CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>
+iabbr cfhead /*<CR>File: <C-R>=expand("%:t")<CR><CR>Date: <C-R>=strftime("%c")<CR><CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>
 
 " vimrc autoreload
 augroup reload_vimrc

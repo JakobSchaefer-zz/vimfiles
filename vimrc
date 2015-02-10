@@ -47,7 +47,7 @@ omap / <Plug>(easymotion-tn)
 map <leader>s ysiw
 map <leader>S yss
 
-map <F2> :15sp<CR>:VimShell<CR>
+map <F2> :10sp<CR>:VimShell<CR>
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " BASIS
@@ -167,9 +167,6 @@ nmap J 5j
 nmap K 5k
 nnoremap L E
 nnoremap H B
-
-" springe zum Klammerpaar TODO testweise
-nmap z %
 
 " SUCHE
 nmap <space> /

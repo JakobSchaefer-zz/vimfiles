@@ -145,10 +145,6 @@ inoremap <leader><CR> <CR><ESC>O
 imap jk <ESC>
 
 """""""""""""""""""" NORMALMODE
-" um ein ganzes Wort auszubessern/löschen, super nützlich!
-nnoremap cw bcw
-nnoremap dw bdw
-
 " Schnelles speichern und schliessen von Dokumenten
 nmap <leader>w :w!<CR>
 nmap <leader>q :q<CR>
@@ -170,8 +166,8 @@ nmap J 5j
 nmap K 5k
 
 " Können viel arbeit ersparen
-nnoremap <C-k> i<CR><ESC>ddkPj$
-nnoremap <C-j> i<CR><ESC>k$
+nnoremap <C-k> DO<ESC>pj$
+nnoremap <C-j> Do<ESC>pk$
 nnoremap <C-l> J
 nnoremap <C-h> kddpkJ
 

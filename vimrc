@@ -24,13 +24,23 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-surround'
 Plugin 'tomasr/molokai'
 
 call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
+" Plugin settings and mappings
+map f <Plug>(easymotion-s)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+map <leader>s ysiw
+map <leader>S yss
+
 " BASIS
 set history=1000
 set autoread
@@ -60,7 +70,7 @@ set wildmenu
 set wildignore=*.o
 set ruler
 set number
-set cmdheight=2
+set cmdheight=1
 set laststatus=2
 syntax on
 set cursorline
@@ -169,17 +179,13 @@ nmap gl <c-w>l
 nmap <C-l> gt
 nmap <C-h> gT>
 
-" Easymotion etwas schneller daruch
-nmap <leader>f <leader><leader>f
-nmap <leader>F <leader><leader>F
-
 " Navigation überspringt nun keine Zeilenumbrüche
 nnoremap k gk
 nnoremap j gj
 
 " Intuitivere Navigation mit shift
-nmap J }
-nmap K {
+nmap J 5j
+nmap K 5k
 nnoremap L E
 nnoremap H B
 

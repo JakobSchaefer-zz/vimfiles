@@ -97,7 +97,9 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
-match Title /TODO/
+:match Todo /NOTE/
+:2match Error /TODO/
+:3match Title /ERROR/
 
 " SICHERUNGEN
 set nobackup

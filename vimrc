@@ -28,6 +28,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
+
 Plugin 'tomasr/molokai'
 
 call vundle#end()
@@ -44,6 +47,9 @@ omap / <Plug>(easymotion-tn)
 map <leader>s ysiw
 map <leader>S yss
 
+map <F2> :15sp<CR>:VimShell<CR>
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+
 " BASIS
 set history=1000
 set autoread
@@ -59,6 +65,7 @@ set foldlevel=1
 set lines=50
 set columns=125
 set updatetime=750
+set splitbelow
 
 let mapleader = ","
 
@@ -161,18 +168,22 @@ nmap K 5k
 nnoremap L E
 nnoremap H B
 
+" springe zum Klammerpaar TODO testweise
+nmap z %
+
 " SUCHE
 nmap <space> /
 nmap <leader><space> :noh<CR>
 
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make
-if has("win32")
+if has("win32") || has('win64')
+  let g:vimshell_prompt = $USERNAME."> "
   nmap <F5> :!build<CR>
   nmap <F6> :!run<CR>
 else
+  let g:vimshell_prompt = $USER."> "
 endif
-
 
 " Kleine Abkürzungen
 iabbr cfhead /*<CR>File: <C-R>=expand("%:t")<CR><CR>Date: <C-R>=strftime("%c")<CR><CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>

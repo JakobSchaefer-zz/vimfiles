@@ -25,6 +25,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
+Plugin 'Raimondi/delimitMate'
+Plugin 'ervandew/supertab'
+
 Plugin 'tomasr/molokai'
 
 call vundle#end()
@@ -115,52 +118,25 @@ inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
-nmap <down> <Nop>
+nnoremap <down> <Nop>
 noremap <left> <Nop>
 noremap <right> <Nop>
-nmap <up> <Nop>
+nnoremap <up> <Nop>
 
 """""""""""""""""""" INPUTMODUS
-" Testweise ausprobieren für Umlaute
-" Kuerzel
+" Kuerzel für die englische tastatur
 imap ae ä
 imap oe ö
 imap ue ü
 
-" Klammerpaare
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {}<ESC>i
-inoremap < <><ESC>i
-
 " Brauche ich um nach den Klammerungen weiter zu tippen
 imap <leader>l <ESC>la
 
-" Etwas bessere Navigation mit im Input-Modus
-imap <leader>O <ESC>O
-imap <leader>o <ESC>o
-imap <leader>A <ESC>A
-imap <leader>I <ESC>I
-
-" Ermöglicht es bequem Leerzeilen einzufügen
-imap <leader>k <ESC>O<ESC>ji
-imap <leader>j <ESC>o<ESC>ki
-
-" BEASTMODE ON
+" BEASTMODE ON!!!!
 imap jk <ESC>
 
 """""""""""""""""""" NORMALMODE
-" Ermöglicht es bequem Leerzeilen einzufügen
-map <leader>k <ESC>O<ESC>j
-map <leader>j <ESC>o<ESC>k
-
-" Bessert kleine Flüchtigkeitsfehler aus
-nmap :Q :q
-nmap :W :w
-
-" cw um ein ganzes Wort auszubessern
+" cw um ein ganzes Wort auszubessern, super nützlich!
 nnoremap cw bcw
 
 " Schnelles speichern und schliessen von Dokumenten
@@ -174,10 +150,6 @@ nmap gk <C-w>k
 nmap gj <C-w>j
 nmap gh <C-w>h
 nmap gl <c-w>l
-
-" Navigation innerhalb von Taps
-nmap <C-l> gt
-nmap <C-h> gT>
 
 " Navigation überspringt nun keine Zeilenumbrüche
 nnoremap k gk
@@ -195,15 +167,12 @@ nmap <leader><space> :noh<CR>
 
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make
+if has("win32")
+  nmap <F5> :!build<CR>
+  nmap <F6> :!run<CR>
+else
+endif
 
-nmap <F5> :!build<CR>
-
-nmap <leader>ad :Gwrite<CR>
-nmap <leader>re :Gread<CR>
-nmap <leader>co :Gcommit<CR>
-nmap <leader>pu :Gpush<CR>
-nmap <leader>st :Gstatus<CR>
-nmap <leader>di :Gvdiff<CR>
 
 " Kleine Abkürzungen
 iabbr cfhead /*<CR>File: <C-R>=expand("%:t")<CR><CR>Date: <C-R>=strftime("%c")<CR><CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>

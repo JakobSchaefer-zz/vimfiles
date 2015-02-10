@@ -136,15 +136,16 @@ imap ae ä
 imap oe ö
 imap ue ü
 
-" Brauche ich um nach den Klammerungen weiter zu tippen
-imap <leader>l <ESC>la
+" Klammerung am ende einer Funktion
+inoremap <leader><CR> <CR><ESC>O
 
 " BEASTMODE ON!!!!
 imap jk <ESC>
 
 """""""""""""""""""" NORMALMODE
-" cw um ein ganzes Wort auszubessern, super nützlich!
+" um ein ganzes Wort auszubessern/löschen, super nützlich!
 nnoremap cw bcw
+nnoremap dw bdw
 
 " Schnelles speichern und schliessen von Dokumenten
 nmap <leader>w :w!<CR>
@@ -165,8 +166,12 @@ nnoremap j gj
 " Intuitivere Navigation mit shift
 nmap J 5j
 nmap K 5k
-nnoremap L E
-nnoremap H B
+
+" Können viel arbeit ersparen
+nnoremap <C-k> i<CR><ESC>ddkPj$
+nnoremap <C-j> i<CR><ESC>k$
+nnoremap <C-l> J
+nnoremap <C-h> kddpkJ
 
 " SUCHE
 nmap <space> /

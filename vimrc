@@ -129,17 +129,12 @@ inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
-nnoremap <down> <Nop>
+nnoremap <down> ddp
 noremap <left> <Nop>
 noremap <right> <Nop>
-nnoremap <up> <Nop>
+nnoremap <up> ddkP
 
 """""""""""""""""""" INPUTMODUS
-" Kuerzel für die englische tastatur
-imap ae ä
-imap oe ö
-imap ue ü
-
 " Klammerung am ende einer Funktion
 inoremap <leader><CR> <CR><ESC>O
 

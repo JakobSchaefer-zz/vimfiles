@@ -47,7 +47,8 @@ omap / <Plug>(easymotion-tn)
 map <leader>s ysiw
 map <leader>S yss
 
-map <F2> :vsp<CR>:VimShell<CR>
+map <F3> <Plug>(vimshell_switch)
+map <F2> :vsp<CR>:VimShell<CR><ESC>gh
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " BASIS
@@ -180,8 +181,8 @@ nmap <leader><space> :noh<CR>
 nmap <leader>m :w!<CR>:!make
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "
-  nmap <F5> :!build<CR>
-  nmap <F6> :!run<CR>
+  nmap <F5> <Plug>(vimshell_switch)./build.bat<CR><ESC>gh
+  nmap <F6> <Plug>(vimshell_switch)./run.bat<CR><ESC>gh
 else
   let g:vimshell_prompt = $USER."> "
 endif

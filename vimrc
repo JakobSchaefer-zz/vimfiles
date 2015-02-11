@@ -47,7 +47,7 @@ omap / <Plug>(easymotion-tn)
 map <leader>s ysiw
 map <leader>S yss
 
-map <F2> :10sp<CR>:VimShell<CR>
+map <F2> :vsp<CR>:VimShell<CR>
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " BASIS
@@ -66,6 +66,7 @@ set lines=50
 set columns=125
 set updatetime=750
 set splitbelow
+set splitright
 
 let mapleader = ","
 

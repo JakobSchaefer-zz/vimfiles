@@ -136,7 +136,7 @@ nnoremap <up> ddkP
 
 """""""""""""""""""" INPUTMODUS
 " Klammerung am ende einer Funktion
-inoremap <leader><CR> <CR><ESC>O
+inoremap <leader><CR> <ESC>o{}<ESC>i<CR><ESC>O
 
 " BEASTMODE ON!!!!
 imap jk <ESC>

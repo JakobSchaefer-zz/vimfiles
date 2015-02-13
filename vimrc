@@ -27,6 +27,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
+Plugin 'scrooloose/nerdtree'
 
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
@@ -47,8 +48,6 @@ omap / <Plug>(easymotion-tn)
 map <leader>s ysiw
 map <leader>S yss
 
-map <F3> <Plug>(vimshell_switch)
-map <F2> :vsp<CR>:VimShell<CR><ESC>gh
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " BASIS
@@ -168,9 +167,18 @@ nnoremap <C-j> Do<ESC>pk$
 nnoremap <C-l> J
 nnoremap <C-h> kddpkJ
 
+" Handlicherer visual mode
+nnoremap vb <C-v>
+nnoremap vl <S-v>
+
 " SUCHE
-nmap <space> /
-nmap <leader><space> :noh<CR>
+nmap . /
+nmap <leader>. :noh<CR>
+
+nnoremap <space> .
+
+map <F2> :NERDTreeToggle<CR>
+map <F3> <Nop>
 
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make

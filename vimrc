@@ -28,6 +28,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
@@ -180,6 +181,8 @@ nnoremap <space> .
 map <F2> :NERDTreeToggle<CR>
 map <F3> <Nop>
 
+nmap <A-q> ,ci
+
 " MAKE UND GIT!!
 nmap <leader>m :w!<CR>:!make
 if has("win32") || has('win64')
@@ -189,6 +192,8 @@ if has("win32") || has('win64')
 else
   let g:vimshell_prompt = $USER."> "
 endif
+
+abbr //-- /* --------------------------------------------------------------------- */
 
 " vimrc autoreload
 augroup reload_vimrc

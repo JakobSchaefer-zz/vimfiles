@@ -190,11 +190,28 @@ else
   let g:vimshell_prompt = $USER."> "
 endif
 
-" Kleine Abkürzungen
-iabbr cfhead /*<CR>File: <C-R>=expand("%:t")<CR><CR>Date: <C-R>=strftime("%c")<CR><CR>Creator: Jakob Schäfer<CR>Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.<CR>/<CR>
-
 " vimrc autoreload
 augroup reload_vimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
+
+" header in c files
+autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt
+autocmd bufnewfile *.c exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.c exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+autocmd Bufwritepre,filewritepre *.c exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")
+autocmd bufwritepost,filewritepost *.c execute "normal `a"
+
+autocmd bufnewfile *.cpp so ~/vimfiles/cfheader.txt
+autocmd bufnewfile *.cpp exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
+autocmd Bufwritepre,filewritepre *.cpp exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")
+
+autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
+autocmd bufnewfile *.h exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.h exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
+autocmd Bufwritepre,filewritepre *.h execute "normal ma"
+autocmd Bufwritepre,filewritepre *.h exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")

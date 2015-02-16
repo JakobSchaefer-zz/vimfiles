@@ -13,7 +13,7 @@ set guioptions-=L  "remove left-hand scroll bar
     set guifont=Consolas:h11:cANSI
   endif
 endif
-
+autocmd GUIEnter * set t_vb=
 """"""""""""""""""""
 " VUNDLE
 set nocompatible
@@ -56,7 +56,7 @@ set history=1000
 set autoread
 set backspace=eol,start,indent
 set noerrorbells
-set novisualbell
+set visualbell
 set t_vb=
 set tm=500
 set foldmethod=indent
@@ -68,6 +68,7 @@ set columns=125
 set updatetime=750
 set splitbelow
 set splitright
+set virtualedit=block
 
 let mapleader = ","
 
@@ -170,7 +171,7 @@ nnoremap <C-h> kddpkJ
 
 " Handlicherer visual mode
 nnoremap vb <C-v>
-nnoremap vl <S-v>
+nnoremap vr <S-v>
 
 " SUCHE
 nmap . /
@@ -178,45 +179,34 @@ nmap <leader>. :noh<CR>
 
 nnoremap <space> .
 
-map <F2> :NERDTreeToggle<CR>
-map <F3> <Nop>
+nnoremap t :NERDTreeToggle<CR>
 
-nmap <A-q> ,ci
+nnoremap <F2> <Nop>
+nnoremap <F3> <Nop>
+nnoremap <F4> <Nop>
+nnoremap <F5> <Nop>
+nnoremap <F6> <Nop>
+
+nmap <A-q> ,c 
 
 " MAKE UND GIT!!
-nmap <leader>m :w!<CR>:!make
+nmap <leader>m :!make 
+
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "
-  nmap <F5> <Plug>(vimshell_switch)./build.bat<CR><ESC>gh
-  nmap <F6> <Plug>(vimshell_switch)./run.bat<CR><ESC>gh
 else
   let g:vimshell_prompt = $USER."> "
 endif
 
-abbr //-- /* --------------------------------------------------------------------- */
-
-" vimrc autoreload
-augroup reload_vimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END
-
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.c exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
-autocmd bufnewfile *.c exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.c execute "normal ma"
-autocmd Bufwritepre,filewritepre *.c exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")
-autocmd bufwritepost,filewritepost *.c execute "normal `a"
+autocmd bufnewfile *.c exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.c exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
 
 autocmd bufnewfile *.cpp so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.cpp exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
-autocmd bufnewfile *.cpp exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
-autocmd Bufwritepre,filewritepre *.cpp exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")
+autocmd bufnewfile *.cpp exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
 
 autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.h exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
-autocmd bufnewfile *.h exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-autocmd Bufwritepre,filewritepre *.h execute "normal ma"
-autocmd Bufwritepre,filewritepre *.h exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " .strftime("%c")
+autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")

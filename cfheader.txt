@@ -2,7 +2,6 @@
 /* ----------------------------------------------------------------------
  * File Name:
  * Creation Date:
- * Last Modified:
  * Created By: Jakob Schäfer
  * Notice: (C) Copyright 2015 by Jakob Schäfer, Inc. All Rights Reserved.
  * --------------------------------------------------------------------- */

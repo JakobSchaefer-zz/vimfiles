@@ -39,15 +39,6 @@ call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
-" Plugin settings and mappings
-map f <Plug>(easymotion-s)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-
-map <leader>s ysiw
-map <leader>S yss
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
@@ -144,11 +135,8 @@ inoremap jk <ESC>
 inoremap jK <ESC>
 
 """""""""""""""""""" NORMALMODE
-" Aufzeichnen an den hjkl Tasten verhindern
-nnoremap qh <Nop>
-nnoremap qj <Nop>
-nnoremap qk <Nop>
-nnoremap ql <Nop>
+" Makros erstmal deaktiviert! Nervt unglaublich
+nnoremap q <Nop>
 
 " Schnelles speichern und schliessen von Dokumenten
 nmap <leader>w :w!<CR>
@@ -157,18 +145,18 @@ nmap <leader><leader>q :q!<CR>
 nmap ! :w<CR>:!
 
 " Navigation innerhalb von Splitts
-nmap gk <C-w>k
-nmap gj <C-w>j
-nmap gh <C-w>h
-nmap gl <c-w>l
+nnoremap gk <C-w>k
+nnoremap gj <C-w>j
+nnoremap gh <C-w>h
+nnoremap gl <c-w>l
 
 " Navigation überspringt nun keine Zeilenumbrüche
 nnoremap k gk
 nnoremap j gj
 
 " Intuitivere Navigation mit shift
-nmap J 5j
-nmap K 5k
+nnoremap J 5j
+nnoremap K 5k
 
 " Können viel arbeit ersparen
 nnoremap <C-k> DO<ESC>pj$
@@ -180,13 +168,24 @@ nnoremap <C-h> kddpkJ
 nnoremap vb <C-v>
 nnoremap vr <S-v>
 
+" Plugin settings and mappings
+map f <Plug>(easymotion-s)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+nnoremap t :NERDTreeToggle<CR>
+
+map <leader>s ysiw
+map <leader>S yss
+
 " SUCHE
-nmap . /
-nmap <leader>. :noh<CR>
+nnoremap . /
+nnoremap <leader>. :noh<CR>
 
 nnoremap <space> .
 
-nnoremap t :NERDTreeToggle<CR>
 
 nnoremap <F2> <Nop>
 nnoremap <F3> <Nop>
@@ -197,7 +196,8 @@ nnoremap <F6> <Nop>
 nmap <A-q> ,c 
 
 " MAKE UND GIT!!
-nmap <leader>m :!make 
+nnoremap <leader>m :!make 
+nnoremap <leader>M :!make -B 
 
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "

@@ -140,9 +140,16 @@ nnoremap <up> ddkP
 inoremap <leader>{ <ESC>o{}<ESC>i<CR><ESC>O
 
 " BEASTMODE ON!!!!
-imap jk <ESC>
+inoremap jk <ESC>
+inoremap jK <ESC>
 
 """""""""""""""""""" NORMALMODE
+" Aufzeichnen an den hjkl Tasten verhindern
+nnoremap qh <Nop>
+nnoremap qj <Nop>
+nnoremap qk <Nop>
+nnoremap ql <Nop>
+
 " Schnelles speichern und schliessen von Dokumenten
 nmap <leader>w :w!<CR>
 nmap <leader>q :q<CR>
@@ -200,13 +207,13 @@ endif
 
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.c exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.c exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.c exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
 
 autocmd bufnewfile *.cpp so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.cpp exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.cpp exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
 
 autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%")
+autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")

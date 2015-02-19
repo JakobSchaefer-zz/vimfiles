@@ -189,9 +189,10 @@ nnoremap <space> .
 nnoremap <F2> <Nop>
 nnoremap <F3> <Nop>
 nnoremap <F4> <Nop>
-nnoremap <F5> :w!<CR>:!make<CR>
-nnoremap <S-F5> :w!<CR>:!make -B<CR>
+nnoremap <F5> :wa!<CR>:!make<CR>
+nnoremap <S-F5> :wa!<CR>:!make -B<CR>
 nnoremap <F6> :!make run<CR>
+nnoremap <S-F6> :wa!<CR>:!make -B all run<CR>
 
 nmap <A-q> ,c 
 

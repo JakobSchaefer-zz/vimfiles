@@ -186,24 +186,28 @@ nnoremap <leader>. :noh<CR>
 
 nnoremap <space> .
 
-
 nnoremap <F2> <Nop>
 nnoremap <F3> <Nop>
 nnoremap <F4> <Nop>
-nnoremap <F5> <Nop>
-nnoremap <F6> <Nop>
+nnoremap <F5> :w!<CR>:!make<CR>
+nnoremap <S-F5> :w!<CR>:!make -B<CR>
+nnoremap <F6> :!make run<CR>
 
 nmap <A-q> ,c 
 
 " MAKE UND GIT!!
-nnoremap <leader>m :!make 
-nnoremap <leader>M :!make -B 
+nnoremap <leader>m :w!<CR>:!make 
+nnoremap <leader>M :w!<CR>:!make -B 
 
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "
 else
   let g:vimshell_prompt = $USER."> "
 endif
+
+" C programmierung
+inoremap <leader>; <ESC>A;
+inoremap <leader>{ <ESC>A {}<ESC>i<CR><ESC>O
 
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt

@@ -91,9 +91,7 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
-:match Todo /NOTE/
-:2match Error /TODO/
-:3match Title /ERROR/
+:match Title /NOTE/
 
 " SICHERUNGEN
 set nobackup
@@ -121,18 +119,14 @@ inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
-nnoremap <down> ddp
-noremap <left> <Nop>
-noremap <right> <Nop>
-nnoremap <up> ddkP
+nnoremap <down> <Nop>
+nnoremap <left> <Nop>
+nnoremap <right> <Nop>
+nnoremap <up> <Nop>
 
 """""""""""""""""""" INPUTMODUS
-" Klammerung am ende einer Funktion
-inoremap <leader>{ <ESC>o{}<ESC>i<CR><ESC>O
-
 " BEASTMODE ON!!!!
 inoremap jk <ESC>
-inoremap jK <ESC>
 
 """""""""""""""""""" NORMALMODE
 " Makros erstmal deaktiviert! Nervt unglaublich
@@ -150,6 +144,9 @@ nnoremap gj <C-w>j
 nnoremap gh <C-w>h
 nnoremap gl <c-w>l
 
+nnoremap gt <Nop>
+nnoremap gT <Nop>
+
 " Navigation überspringt nun keine Zeilenumbrüche
 nnoremap k gk
 nnoremap j gj
@@ -157,6 +154,8 @@ nnoremap j gj
 " Intuitivere Navigation mit shift
 nnoremap J 5j
 nnoremap K 5k
+nnoremap H gT
+nnoremap L gt
 
 " Können viel arbeit ersparen
 nnoremap <C-k> DO<ESC>pj$
@@ -175,7 +174,7 @@ map  N <Plug>(easymotion-prev)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-nnoremap t :NERDTreeToggle<CR>
+nnoremap nt :NERDTreeToggle<CR>
 
 map <leader>s ysiw
 map <leader>S yss

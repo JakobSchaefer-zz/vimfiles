@@ -174,13 +174,13 @@ map  N <Plug>(easymotion-prev)
 map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-nnoremap nt :NERDTreeToggle<CR>
+nnoremap tr :NERDTreeToggle<CR>
 
 map <leader>s ysiw
 map <leader>S yss
 
 " SUCHE
-nnoremap . /
+nmap . /
 nnoremap <leader>. :noh<CR>
 
 nnoremap <space> .

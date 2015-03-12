@@ -201,13 +201,10 @@ nnoremap <space> .
 nnoremap <F2> :VimShell<CR>
 nnoremap <F3> <Nop>
 nnoremap <F4> <Nop>
-nnoremap <F5> :wa!<CR>:!make<CR>
-nnoremap <S-F5> :wa!<CR>:!make -B<CR>
-nnoremap <F6> :!make compile run<CR>
-nnoremap <S-F6> :wa!<CR>:!make -B all run<CR>
+nnoremap <F5> :wa!<CR>:silent make<CR>:cw<CR>
+nnoremap <S-F5> :wa!<CR>:silent make -B<CR><CR>
+nnoremap <F6> :wa!<CR>:silent make run<CR>
 nnoremap <F12> :so $MYVIMRC<CR>
-nnoremap <F9> :mksession! session.vim<CR>
-nnoremap <F10> :source session.vim<CR>
 
 nmap <A-q> ,c 
 vmap <A-q> ,c 
@@ -226,6 +223,9 @@ endif
 inoremap <leader>; <ESC>A;
 inoremap <leader>{ <ESC>A {}<ESC>i<CR><ESC>O
 
+nnoremap m :cn<CR>
+nnoremap M :cp<CR>
+
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt
 autocmd bufnewfile *.c exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
@@ -238,3 +238,6 @@ autocmd bufnewfile *.cpp exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " 
 autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
 autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
+
+autocmd FileType qf wincmd L
+autocmd QuickFixCmdPost * :syntax on

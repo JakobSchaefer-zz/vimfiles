@@ -29,7 +29,10 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-" Plugin 'mhinz/vim-startify'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'mhinz/vim-startify'
+
+Plugin 'SirVer/ultisnips'
 
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
@@ -43,6 +46,10 @@ filetype plugin indent on
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:NERDSpaceDelims = 1
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " BASIS
 set history=1000
@@ -118,8 +125,8 @@ vnoremap <left> <Nop>
 vnoremap <right> <Nop>
 vnoremap <up> <Nop>
 inoremap <down> <Nop>
-inoremap <left> <Nop>
-inoremap <right> <Nop>
+imap <left> <Plug>snipMateBack
+imap <right> <Plug>snipMateNextOrTrigger
 inoremap <up> <Nop>
 nnoremap <down> <Nop>
 nnoremap <left> <Nop>
@@ -199,8 +206,8 @@ nnoremap <S-F5> :wa!<CR>:!make -B<CR>
 nnoremap <F6> :!make compile run<CR>
 nnoremap <S-F6> :wa!<CR>:!make -B all run<CR>
 nnoremap <F12> :so $MYVIMRC<CR>
-nnoremap <F9> :mksession! ~\vimfiles\tempsession.vim<CR>
-nnoremap <F10> :source ~\vimfiles\tempsession.vim<CR>
+nnoremap <F9> :mksession! session.vim<CR>
+nnoremap <F10> :source session.vim<CR>
 
 nmap <A-q> ,c 
 vmap <A-q> ,c 

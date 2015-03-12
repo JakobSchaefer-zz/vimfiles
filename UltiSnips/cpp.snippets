@@ -1,1 +1,58 @@
+snippet if
+if (${1:true}) {
+	${2:// then}
+}
+endsnippet
+snippet else
+else {
+	${1}
+}
+endsnippet
+snippet while
+while (${1:true}) {
+	${2:// do this}
+}
+endsnippet
+snippet for
+for (int ${1:i} = ${2:0}; $1 < ${3:somevalue}; $1++) {
+	${4://do this}
+}
+endsnippet
+snippet switch
+switch (${1:somevariable}) {
+	${2}
+}
+endsnippet
+snippet case
+case ${1}:
+	${2}
+break;
+endsnippet
+snippet default
+default:
+	${1}
+break;
+endsnippet
+snippet class
+class ${1:name} {
+	public:
+	${2}
+	private:
+};
+endsnippet
+snippet namespace
+namespace ${1:name} {
+${2}
+}  // namespace $1
+endsnippet
+snippet once
+#ifndef ${1:tag}
+#define $1
 
+${2}
+
+#endif  // $1
+endsnippet
+snippet todo
+// TODO(jakob): ${1}
+endsnippet

@@ -48,8 +48,8 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:NERDSpaceDelims = 1
 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " BASIS
 set history=1000

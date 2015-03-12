@@ -29,6 +29,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+" Plugin 'mhinz/vim-startify'
 
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
@@ -41,6 +42,7 @@ filetype plugin indent on
 """"""""""""""""""""
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:NERDSpaceDelims = 1
 
 " BASIS
 set history=1000
@@ -157,6 +159,10 @@ nnoremap K 5k
 nnoremap H gT
 nnoremap L gt
 
+" Navigation im viusal mode
+vnoremap J 5j
+vnoremap K 5k
+
 " Können viel arbeit ersparen
 nnoremap <C-k> DO<ESC>pj$
 nnoremap <C-j> Do<ESC>pk$
@@ -185,15 +191,19 @@ nnoremap <leader>. :noh<CR>
 
 nnoremap <space> .
 
-nnoremap <F2> <Nop>
+nnoremap <F2> :VimShell<CR>
 nnoremap <F3> <Nop>
 nnoremap <F4> <Nop>
 nnoremap <F5> :wa!<CR>:!make<CR>
 nnoremap <S-F5> :wa!<CR>:!make -B<CR>
-nnoremap <F6> :!make run<CR>
+nnoremap <F6> :!make compile run<CR>
 nnoremap <S-F6> :wa!<CR>:!make -B all run<CR>
+nnoremap <F12> :so $MYVIMRC<CR>
+nnoremap <F9> :mksession! ~\vimfiles\tempsession.vim<CR>
+nnoremap <F10> :source ~\vimfiles\tempsession.vim<CR>
 
 nmap <A-q> ,c 
+vmap <A-q> ,c 
 
 " MAKE UND GIT!!
 nnoremap <leader>m :w!<CR>:!make 

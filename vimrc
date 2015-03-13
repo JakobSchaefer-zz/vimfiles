@@ -201,9 +201,10 @@ nnoremap <space> .
 nnoremap <F2> :VimShell<CR>
 nnoremap <F3> <Nop>
 nnoremap <F4> <Nop>
-nnoremap <F5> :wa!<CR>:silent make<CR>:cw<CR>
-nnoremap <S-F5> :wa!<CR>:silent make -B<CR><CR>
-nnoremap <F6> :wa!<CR>:silent make run<CR>
+nnoremap <F5> :wa!<CR>:!make<CR>
+nnoremap <S-F5> :wa!<CR>:!make -B<CR><CR>
+nnoremap <F6> :wa!<CR>:!make all run<CR>
+nnoremap <S-F6> :wa!<CR>:!make -B all run<CR>
 nnoremap <F12> :so $MYVIMRC<CR>
 
 nmap <A-q> ,c 

@@ -28,13 +28,17 @@ switch (${1:somevariable}) {
 endsnippet
 snippet case
 case ${1}:
+{
 	${2}
-break;
+	break;
+}
 endsnippet
 snippet default
 default:
+{
 	${1}
-break;
+	break;
+}
 endsnippet
 snippet class
 class ${1:name} {

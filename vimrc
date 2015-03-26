@@ -213,6 +213,7 @@ vmap <A-q> ,c
 " MAKE UND GIT!!
 nnoremap <leader>m :w!<CR>:!make 
 nnoremap <leader>M :w!<CR>:!make -B 
+nmap <leader>b <F2><plug>(vimshell_clear)./build<CR><ESC><c-w>l
 
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "

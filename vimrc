@@ -24,13 +24,11 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-surround'
 Plugin 'Raimondi/delimitMate'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'mhinz/vim-startify'
 
 Plugin 'SirVer/ultisnips'
 
@@ -100,7 +98,8 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
-:match Title /NOTE/
+match Title /TODO/
+2match Todo /NOTE/
 
 " SICHERUNGEN
 set nobackup
@@ -120,18 +119,18 @@ set wrap
 
 """""""""""""""""""" VISUALMODUS
 " Deaktiviert die Pfeiltasten
-vnoremap <down> <Nop>
-vnoremap <left> <Nop>
-vnoremap <right> <Nop>
-vnoremap <up> <Nop>
+vnoremap <down> }
+vnoremap <left> ^
+vnoremap <right> $
+vnoremap <up> {
 inoremap <down> <Nop>
 imap <left> <Plug>snipMateBack
 imap <right> <Plug>snipMateNextOrTrigger
 inoremap <up> <Nop>
-nnoremap <down> <Nop>
-nnoremap <left> <Nop>
-nnoremap <right> <Nop>
-nnoremap <up> <Nop>
+nnoremap <down> }
+nnoremap <left> ^
+nnoremap <right> $
+nnoremap <up> {
 
 """""""""""""""""""" INPUTMODUS
 " BEASTMODE ON!!!!
@@ -224,9 +223,6 @@ endif
 " C programmierung
 inoremap <leader>; <ESC>A;
 inoremap <leader>{ <ESC>A {}<ESC>i<CR><ESC>O
-
-nnoremap m :cn<CR>
-nnoremap M :cp<CR>
 
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt

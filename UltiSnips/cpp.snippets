@@ -3,7 +3,7 @@ snippet inc
 endsnippet
 snippet if
 if (${1:true}) {
-	${2:// then}
+	${2}
 }
 endsnippet
 snippet else
@@ -13,16 +13,16 @@ else {
 endsnippet
 snippet while
 while (${1:true}) {
-	${2:// do this}
+	${2}
 }
 endsnippet
 snippet for
-for (int ${1:i} = ${2:0}; $1 < ${3:somevalue}; $1++) {
-	${4://do this}
+for (${1}) {
+	${2}
 }
 endsnippet
 snippet switch
-switch (${1:somevariable}) {
+switch (${1}) {
 	${2}
 }
 endsnippet

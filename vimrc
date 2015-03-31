@@ -41,13 +41,17 @@ call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
+compiler msvc
+set makeprg=build.bat
 
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:NERDSpaceDelims = 1
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:EasyMotion_smartcase = 1
+
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><leader><tab>"
 
 " BASIS
 set history=1000
@@ -127,10 +131,10 @@ inoremap <down> <Nop>
 imap <left> <Plug>snipMateBack
 imap <right> <Plug>snipMateNextOrTrigger
 inoremap <up> <Nop>
-nnoremap <down> }
-nnoremap <left> ^
-nnoremap <right> $
-nnoremap <up> {
+nnoremap <down> :cn<CR>
+nnoremap <left> <Nop>
+nnoremap <right> <Nop>
+nnoremap <up> :cp<CR>
 
 """""""""""""""""""" INPUTMODUS
 " BEASTMODE ON!!!!
@@ -169,12 +173,6 @@ nnoremap L gt
 vnoremap J 5j
 vnoremap K 5k
 
-" Können viel arbeit ersparen
-nnoremap <C-k> DO<ESC>pj$
-nnoremap <C-j> Do<ESC>pk$
-nnoremap <C-l> J
-nnoremap <C-h> kddpkJ
-
 " Handlicherer visual mode
 nnoremap vb <C-v>
 nnoremap vr <S-v>
@@ -212,7 +210,7 @@ vmap <A-q> ,c
 " MAKE UND GIT!!
 nnoremap <leader>m :w!<CR>:!make 
 nnoremap <leader>M :w!<CR>:!make -B 
-nmap <leader>b <F2><plug>(vimshell_clear)./build<CR><ESC><c-w>l
+nnoremap <silent> <leader>b :make<CR>:botright copen<CR><C-w>w
 
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "
@@ -237,5 +235,5 @@ autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
 autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
 
-autocmd FileType qf wincmd L
-autocmd QuickFixCmdPost * :syntax on
+"autocmd FileType qf wincmd L
+"autocmd QuickFixCmdPost * :syntax on

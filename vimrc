@@ -23,15 +23,31 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+" Boooooom
 Plugin 'Lokaltog/vim-easymotion'
+
+" Automatische Klammerung
 Plugin 'Raimondi/delimitMate'
+
+" ctrl-n super schnell und unkompliziert
 Plugin 'ervandew/supertab'
+
+" Besserer Filetree
 Plugin 'scrooloose/nerdtree'
+
+" Nur zum kommentieren einzelner zeilen
 Plugin 'scrooloose/nerdcommenter'
+
+" Helleres farbschema
 Plugin 'altercation/vim-colors-solarized'
 
+" Just for fun
+Plugin 'terryma/vim-multiple-cursors'
+
+" BOOOOOOOM
 Plugin 'SirVer/ultisnips'
 
+" Main colorshemeeeeemeee
 Plugin 'tomasr/molokai'
 
 call vundle#end()
@@ -101,8 +117,6 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
-match Title /TODO/
-2match Todo /NOTE/
 
 " SICHERUNGEN
 set nobackup
@@ -141,7 +155,7 @@ inoremap jk <ESC>
 
 """""""""""""""""""" NORMALMODE
 " Makros erstmal deaktiviert! Nervt unglaublich
-nnoremap q <Nop>
+nnoremap q za
 
 " Schnelles speichern und schliessen von Dokumenten
 nnoremap <leader>w :w!<CR>
@@ -163,8 +177,8 @@ nnoremap k gk
 nnoremap j gj
 
 " Intuitivere Navigation mit shift
-nmap J <Plug>(easymotion-j)
-nmap K <Plug>(easymotion-k)
+nnoremap J 5j
+nnoremap K 5k
 nnoremap H gT
 nnoremap L gt
 
@@ -180,7 +194,6 @@ nnoremap vr <S-v>
 map f <Plug>(easymotion-s)
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-sn)
-
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 
@@ -191,11 +204,17 @@ nmap . /
 
 nnoremap <space> .
 
+" Setzen der Farben für hellere Umgebungen
 nnoremap <F3> :set background=light<CR>:colorscheme solarized<CR>
 nnoremap <F4> :set background=dark<CR>:colorscheme molokai<CR>
-nnoremap <F5> :make<CR>:botright copen<CR><C-w>w
+
+" Compilieren
+nnoremap <leader>b :make<CR>:botright copen<CR><C-w>w
+
+" vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
 
+" Codezeilen und Bereiche auskommentieren
 nmap <A-q> ,c 
 vmap <A-q> ,c 
 

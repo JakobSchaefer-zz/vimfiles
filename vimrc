@@ -32,9 +32,6 @@ Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'SirVer/ultisnips'
 
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
-
 Plugin 'tomasr/molokai'
 
 call vundle#end()
@@ -61,10 +58,12 @@ set noerrorbells
 set visualbell
 set t_vb=
 set tm=500
+
 set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
+set foldnestmax=1
+set foldenable
 set foldlevel=1
+
 set lines=50
 set columns=125
 set updatetime=750
@@ -75,7 +74,7 @@ set virtualedit=block
 let mapleader = ","
 
 " SUCHE
-set hlsearch
+set nohlsearch
 set smartcase
 set incsearch
 
@@ -123,13 +122,13 @@ set wrap
 
 """""""""""""""""""" VISUALMODUS
 " Deaktiviert die Pfeiltasten
-vnoremap <down> }
-vnoremap <left> ^
-vnoremap <right> $
-vnoremap <up> {
+vnoremap <down> <Nop>
+vnoremap <left> <Nop>
+vnoremap <right> <Nop>
+vnoremap <up> <Nop>
 inoremap <down> <Nop>
-imap <left> <Plug>snipMateBack
-imap <right> <Plug>snipMateNextOrTrigger
+imap <left> <Nop>
+imap <right> <Nop>
 inoremap <up> <Nop>
 nnoremap <down> :cn<CR>
 nnoremap <left> <Nop>
@@ -145,10 +144,10 @@ inoremap jk <ESC>
 nnoremap q <Nop>
 
 " Schnelles speichern und schliessen von Dokumenten
-nmap <leader>w :w!<CR>
-nmap <leader>q :q<CR>
-nmap <leader><leader>q :q!<CR>
-nmap ! :w<CR>:!
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader><leader>q :q!<CR>
+nnoremap ! :w<CR>:!
 
 " Navigation innerhalb von Splitts
 nnoremap gk <C-w>k
@@ -164,8 +163,8 @@ nnoremap k gk
 nnoremap j gj
 
 " Intuitivere Navigation mit shift
-nnoremap J 5j
-nnoremap K 5k
+nmap J <Plug>(easymotion-j)
+nmap K <Plug>(easymotion-k)
 nnoremap H gT
 nnoremap L gt
 
@@ -179,48 +178,32 @@ nnoremap vr <S-v>
 
 " Plugin settings and mappings
 map f <Plug>(easymotion-s)
+map / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-sn)
+
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
 
 nnoremap tr :NERDTreeToggle<CR>
 
-map <leader>s ysiw
-map <leader>S yss
-
 " SUCHE
 nmap . /
-nnoremap <leader>. :noh<CR>
 
 nnoremap <space> .
 
-nnoremap <F2> :VimShell<CR>
 nnoremap <F3> :set background=light<CR>:colorscheme solarized<CR>
 nnoremap <F4> :set background=dark<CR>:colorscheme molokai<CR>
-nnoremap <F5> :wa!<CR>:!make all<CR>
-nnoremap <S-F5> :wa!<CR>:!make -B all<CR><CR>
-nnoremap <F6> :wa!<CR>:!make compile run<CR>
-nnoremap <S-F6> :wa!<CR>:!make -B compile run<CR>
+nnoremap <F5> :make<CR>:botright copen<CR><C-w>w
 nnoremap <F12> :so $MYVIMRC<CR>
 
 nmap <A-q> ,c 
 vmap <A-q> ,c 
-
-" MAKE UND GIT!!
-nnoremap <leader>m :w!<CR>:!make 
-nnoremap <leader>M :w!<CR>:!make -B 
-nnoremap <silent> <leader>b :make<CR>:botright copen<CR><C-w>w
 
 if has("win32") || has('win64')
   let g:vimshell_prompt = $USERNAME."> "
 else
   let g:vimshell_prompt = $USER."> "
 endif
-
-" C programmierung
-inoremap <leader>; <ESC>A;
-inoremap <leader>{ <ESC>A {}<ESC>i<CR><ESC>O
 
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt
@@ -234,6 +217,3 @@ autocmd bufnewfile *.cpp exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " 
 autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
 autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-
-"autocmd FileType qf wincmd L
-"autocmd QuickFixCmdPost * :syntax on

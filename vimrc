@@ -152,6 +152,7 @@ nnoremap <up> :cp<CR>
 """""""""""""""""""" INPUTMODUS
 " BEASTMODE ON!!!!
 inoremap jk <ESC>
+inoremap jK <ESC>
 
 """""""""""""""""""" NORMALMODE
 " Makros erstmal deaktiviert! Nervt unglaublich
@@ -209,7 +210,7 @@ nnoremap <F3> :set background=light<CR>:colorscheme solarized<CR>
 nnoremap <F4> :set background=dark<CR>:colorscheme molokai<CR>
 
 " Compilieren
-nnoremap <leader>b :make<CR>:botright copen<CR><C-w>w
+nnoremap <leader>b ma:make<CR>:botright copen<CR><C-w>w
 
 " vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
@@ -223,6 +224,13 @@ if has("win32") || has('win64')
 else
   let g:vimshell_prompt = $USER."> "
 endif
+
+" Programmierung
+inoremap <leader>l <ESC>A
+inoremap <leader>k <ESC>kA
+inoremap <leader>j <ESC>jA
+inoremap <leader>; <ESC>A;
+inoremap <leader>cb <ESC>A<space>{}<ESC>i<CR><ESC>O
 
 " header in c files
 autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt

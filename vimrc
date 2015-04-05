@@ -117,6 +117,7 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
+match Title /TODO/
 
 " SICHERUNGEN
 set nobackup

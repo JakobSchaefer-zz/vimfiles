@@ -132,6 +132,9 @@
   set autoindent
   set smartindent
   set wrap
+  set nolist
+  set formatoptions+=v
+  set formatoptions+=l
 
 " MAPING " MAPING " MAPPING " MAPPING " MAPPING " MAPPING " MAPPING "
 """"""""""""""""""""""""""""" VISUALMODE """""""""""""""""""""""""""""""""""""
@@ -160,7 +163,7 @@
   inoremap JK <ESC>
 
   " (insert) (right)
-  inoremap <leader>l <ESC>A
+  inoremap <leader>l <ESC>la
   " (insert) semicolon
   inoremap <leader>; <ESC>A;
   " (insert) curly brackets

@@ -291,11 +291,13 @@
   nnoremap <space> .
 
   " Setzen der Farben für hellere Umgebungen
-  nnoremap <F3> :set background=light<CR>:colorscheme solarized<CR>
-  nnoremap <F4> :set background=dark<CR>:colorscheme molokai<CR>
+  nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
+  nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
+  nnoremap <F3> :set background=dark<CR>:colorscheme molokai<CR>
+  nnoremap <F4> :set background=light<CR>:colorscheme solarized<CR>
 
   " Compilieren
-  nnoremap <leader>b ma:make<CR>:botright copen<CR><C-w>w
+  nnoremap <leader>b ma:make<CR>:botright copen 4<CR><C-w>w
 
   " vimrc neu laden
   nnoremap <F12> :so $MYVIMRC<CR>

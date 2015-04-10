@@ -24,28 +24,20 @@
   Plugin 'gmarik/Vundle.vim'
   " Boooooom
   Plugin 'Lokaltog/vim-easymotion'
-
   " Automatische Klammerung
   Plugin 'Raimondi/delimitMate'
-
   " ctrl-n super schnell und unkompliziert
   Plugin 'ervandew/supertab'
-
   " Besserer Filetree
   Plugin 'scrooloose/nerdtree'
-
   " Nur zum kommentieren einzelner zeilen
   Plugin 'scrooloose/nerdcommenter'
-
   " Helleres farbschema
   Plugin 'altercation/vim-colors-solarized'
-
   " Just for fun
   Plugin 'terryma/vim-multiple-cursors'
-
   " BOOOOOOOM
   Plugin 'SirVer/ultisnips'
-
   " Main colorshemeeeeemeee
   Plugin 'tomasr/molokai'
 
@@ -59,11 +51,15 @@
   let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
   let g:NERDSpaceDelims = 1
 
+  let g:NERDTreeQuitOnOpen = 1
+
   let g:EasyMotion_smartcase = 1
 
-  let g:UltiSnipsExpandTrigger="<leader><tab>"
-  let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-  let g:UltiSnipsJumpBackwardTrigger="<leader><leader><tab>"
+  let g:UltiSnipsExpandTrigger = "<leader><tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<leader><tab>"
+  let g:UltiSnipsJumpBackwardTrigger = "<leader><leader><tab>"
+
+  let g:SuperTabCompleteCase = 'ignore'
 
   " BASIS
   set history=1000
@@ -74,13 +70,13 @@
   set t_vb=
   set tm=500
 
-  set foldmethod=indent
+  set foldmethod=syntax
   set foldnestmax=1
   set foldenable
   set foldlevel=1
 
   set lines=50
-  set columns=125
+  set columns=80
   set updatetime=750
   set splitbelow
   set splitright
@@ -98,7 +94,7 @@
   set wildmenu
   set wildignore=*.o
   set ruler
-  set number
+  " set number
   set cmdheight=1
   set laststatus=2
   syntax on
@@ -109,7 +105,7 @@
   set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
   set background=dark
-  colorscheme molokai
+  colorscheme solarized
   set encoding=utf8
   set ffs=unix,dos,mac
   set listchars=eol:¬,tab:»·,trail:·
@@ -143,18 +139,10 @@
   vnoremap <left> <Nop>
   vnoremap <right> <Nop>
   vnoremap <up> <Nop>
-  inoremap <down> <Nop>
-  imap <left> <Nop>
-  imap <right> <Nop>
-  inoremap <up> <Nop>
-  nnoremap <down> :cn<CR>
-  nnoremap <left> <Nop>
-  nnoremap <right> <Nop>
-  nnoremap <up> :cp<CR>
 
   " Navigation im viusal mode
-  vnoremap J }
-  vnoremap K {
+  vnoremap J 5j
+  vnoremap K 5k
 
 """"""""""""""""""""""""""""" INSERTMODE """""""""""""""""""""""""""""""""""""
   " BEASTMODE ON!!!!
@@ -162,19 +150,40 @@
   inoremap jK <ESC>
   inoremap JK <ESC>
 
-  " (insert) (right)
-  inoremap <leader>l <ESC>la
-  " (insert) semicolon
-  inoremap <leader>; <ESC>A;
+  inoremap <down> <Nop>
+  inoremap <left> <Nop>
+  inoremap <right> <Nop>
+  inoremap <up> <Nop>
+
+  inoremap <A-h> <left>
+  inoremap <A-j> <down>
+  inoremap <A-k> <up>
+  inoremap <A-l> <right>
+
+  inoremap <A-o> <ESC>O
+  inoremap <A-a> <ESC>A
+  inoremap <A-i> <ESC>I
+
+  inoremap <A-b> <ESC>bi
+  inoremap <A-w> <ESC>2wi
+
   " (insert) curly brackets
   inoremap <leader>cb <ESC>A<space>{}<ESC>i<CR><ESC>O
+  " (insert) (semikolon)
+  inoremap <leader><leader> <ESC>A;
 
 """"""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
+  " Move in quickfix window
+  nnoremap <down> :cn<CR>
+  nnoremap <left> <Nop>
+  nnoremap <right> <Nop>
+  nnoremap <up> :cp<CR>
+
   " Makros erstmal deaktiviert! Folding!
   nnoremap q za
 
   " Passende Einrückung
-  nnoremap = =<CR>
+  nnoremap = =l
 
   " Schnelles speichern und schliessen von Dokumenten
   nnoremap <leader>w :w!<CR>
@@ -199,24 +208,18 @@
   nnoremap k gk
   nnoremap j gj
 
-  " Intuitivere Navigation mit shift
-  nnoremap J }
-  nnoremap K {
+  " Intuitivere Navigation mit shift und alt
+  nnoremap J 5j
+  nnoremap K 5k
   nnoremap H ^
   nnoremap L $
-
-  " Bewegung zwischen Tabs
-  " tab next
-  nnoremap tn gt
-  " tab previous
-  nnoremap tp gT
+  nnoremap <A-l> gt
+  nnoremap <A-h> gT
+  nnoremap <A-j> <C-f>
+  nnoremap <A-k> <C-b>
 
   " Redo!
   nnoremap U <c-R>
-
-  " delete line
-  nnoremap dl dd
-  nnoremap dd <Nop>
 
   "Caps ändern
   nnoremap + ~
@@ -225,8 +228,8 @@
   " Handlicherer visual mode
   " visual block
   nnoremap vb <C-v>
-  " visual line
-  nnoremap vl <S-v>
+  " visual row
+  nnoremap vv <S-v>
 
   " Tab zum Einrücken
   nnoremap <tab> >>
@@ -236,35 +239,36 @@
 
   " Plugin settings and mappings
   " find
-  map f <Plug>(easymotion-s2)
-  map / <Plug>(easymotion-sn)
+  nmap f <Plug>(easymotion-s2)
+  nmap / <Plug>(easymotion-sn)
   omap / <Plug>(easymotion-sn)
-  map  n <Plug>(easymotion-next)
-  map  N <Plug>(easymotion-prev)
-  map # /<c-r><c-w>
-  map * /<c-r><c-w><cr>
+  nmap  n <Plug>(easymotion-next)
+  nmap  N <Plug>(easymotion-prev)
+  nnoremap # <Nop>
+  nnoremap * <Nop>
+  
 
   " Search n replace
   nnoremap srw :%s/<c-r><c-w>//g<left><left>
   nmap sw /<c-r><c-w>
 
-  " change inside something
-  nnoremap cib ci(
-  nnoremap cicb ci{
-  nnoremap cisb ci[
-  " TODO: spitze klammern
+  " (do something) inside parenthesis
+  nnoremap dip di(
+  nnoremap cip ci(
+  nnoremap vip vi(
+  nnoremap yip yi(
 
-  " delete inside something
-  nnoremap dib di(
+  " (do something) inside curly brackets
   nnoremap dicb di{
-  nnoremap disb di[
-  " TODO: spitze klammern
-
-  " visual inside something
-  nnoremap vib vi(
+  nnoremap cicb ci{
   nnoremap vicb vi{
+  nnoremap yicb yi{
+
+  " (do something) inside square brackets
+  nnoremap disb di[
+  nnoremap cisb ci[
   nnoremap visb vi[
-  " TODO: spitze klammern
+  nnoremap yisb yi[
 
   nnoremap tr :NERDTreeToggle<CR>
 
@@ -293,11 +297,9 @@
   " Setzen der Farben für hellere Umgebungen
   nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
   nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
-  nnoremap <F3> :set background=dark<CR>:colorscheme molokai<CR>
-  nnoremap <F4> :set background=light<CR>:colorscheme solarized<CR>
+  nnoremap <F3> :set background=dark<CR>
+  nnoremap <F4> :set background=light<CR>
 
-  " Compilieren
-  nnoremap <leader>b ma:make<CR>:botright copen 4<CR><C-w>w
 
   " vimrc neu laden
   nnoremap <F12> :so $MYVIMRC<CR>
@@ -307,6 +309,9 @@
   " Codezeilen und Bereiche auskommentieren
   nmap <A-q> ,c 
   vmap <A-q> ,c 
+
+  " Compilieren
+  nnoremap <A-b> :make<CR>:botright cw<CR><C-w>w
 
   if has("win32") || has('win64')
     if has("cscope")

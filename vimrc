@@ -58,7 +58,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<leader><leader><tab>"
 
 let g:SuperTabCompleteCase = 'ignore'
 
-" BASIS
+" BASICS
 set history=1000
 set autoread
 set backspace=eol,start,indent
@@ -74,6 +74,7 @@ set splitbelow
 set splitright
 set virtualedit=block
 set hidden
+set nofoldenable
 
 let mapleader = ","
 
@@ -136,12 +137,14 @@ vnoremap <up> <Nop>
 " Navigation im viusal mode
 vnoremap J 5j
 vnoremap K 5k
-vnoremap h ^
-vnoremap l $
+vnoremap H ^
+vnoremap L $
 
 " nützlich zum einrücken mehrerer zeilen
 vnoremap <tab> >
 vnoremap <s-tab> <
+
+vnoremap mmb %
 
 """"""""""""""""""""""""""""" INSERTMODE """""""""""""""""""""""""""""""""""""
 inoremap <down> <Nop>
@@ -201,12 +204,12 @@ nnoremap j gj
 " Intuitivere Navigation mit shift und alt
 nnoremap J 5j
 nnoremap K 5k
-nnoremap h ^
-nnoremap l $
+nnoremap H ^
+nnoremap L $
 nnoremap <A-l> gt
 nnoremap <A-h> gT
-nnoremap <A-j> <C-f>
-nnoremap <A-k> <C-b>
+nnoremap <A-j> }
+nnoremap <A-k> {
 
 " Redo!
 nnoremap U <c-R>
@@ -254,9 +257,9 @@ nnoremap frw :%s/<c-r><c-w>//g<left><left>
 nmap fiw /<c-r><c-w>
 
 " Substitude hole line
-nnoremap ss S
+nnoremap ss Vp
 
-" (do something) inside parenthesis
+" (do something) inside/till parenthesis
 nnoremap dip di(
 nnoremap cip ci(
 nnoremap vip vi(
@@ -273,7 +276,7 @@ nnoremap vTp vT(
 nnoremap ytp yt)
 nnoremap yTp yT(
 
-" (do something) inside curly brackets
+" (do something) inside/till curly brackets
 nnoremap dicb di{
 nnoremap cicb ci{
 nnoremap vicb vi{
@@ -290,7 +293,7 @@ nnoremap vTcb vT{
 nnoremap ytcb yt{
 nnoremap yTcb yT}
 
-" (do something) inside square brackets
+" (do something) inside/till square brackets
 nnoremap disb di[
 nnoremap cisb ci[
 nnoremap visb vi[
@@ -307,7 +310,7 @@ nnoremap vTsb vT[
 nnoremap ytsb yt]
 nnoremap yTsb yT[
 
-" (do something) inside angle brackets
+" (do something) inside/till angle brackets
 nnoremap diab di<
 nnoremap ciab ci<
 nnoremap viab vi<
@@ -324,7 +327,7 @@ nnoremap vTab vT<
 nnoremap ytab yt>
 nnoremap yTab yT<
 
-" (do something) inside quotes
+" (do something) inside/till quotes
 nnoremap diq di"
 nnoremap ciq ci"
 nnoremap viq vi"
@@ -346,14 +349,20 @@ nnoremap tr :NERDTreeToggle<CR>
 " SUCHE
 nmap . /
 
-" markmove
-nnoremap mm m
+" (insert) mark
+nnoremap <leader>m m
 " move
 nnoremap m '
-" move back
-nnoremap mb ''
+" move toggle
+nnoremap ml ''
 " move to matched bracket
 nnoremap mmb %
+" move top
+nnoremap mt zt
+" move down
+nnoremap mb zb
+" move middle
+nnoremap mm zz
 
 " need to call cscope before
 " cscope neu laden
@@ -417,8 +426,10 @@ autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .s
 
 function! FoldMarker()
   let thisline = getline(v:lnum)
-  if match(thisline, '^\s*// -') >= 0
-    return ">1"
+  if match(thisline, '^[a-zA-Z]') >= 0
+    if match(thisline, '[{,]$') >= 0
+      return ">1"
+    endif
   else
     return "="
   endif
@@ -426,10 +437,9 @@ endfunction
 
 function! FoldMarkerText()
   let foldsize = (v:foldend-v:foldstart)
-  return getline(v:foldstart).' '
+  return getline(v:foldstart).' ('.foldsize.' Zeilen) '
 endfunction
 
 autocmd FileType cpp setlocal foldmethod=expr foldexpr=FoldMarker() foldtext=FoldMarkerText()
 
 """"""""""""""""""""""""""""" ABBRIVIATIONS """"""""""""""""""""""""""""""""""
-ab ### // --------------------------

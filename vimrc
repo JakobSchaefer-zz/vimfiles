@@ -36,6 +36,12 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 " Main colorshemeeeeemeee
 Plugin 'tommcdo/vim-exchange'
+" Fuzzy finder
+Plugin 'kien/ctrlp.vim'
+
+" ....... hahahahaahh
+Plugin 'mmisono/snake.vim'
+Plugin 'uguu-org/vim-matrix-screensaver'
 
 call vundle#end()
 
@@ -44,19 +50,21 @@ filetype plugin indent on
 compiler msvc
 set makeprg=build.bat
 
+" Space after //
 let g:NERDSpaceDelims = 1
 
+" nerdtree on speed
 let g:NERDTreeQuitOnOpen = 1
 
+" i am a lazy shifter
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj,'
 
-let g:UltiSnipsExpandTrigger = "<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger = "<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<leader><leader><tab>"
-
 let g:SuperTabCompleteCase = 'ignore'
+
+" finde file
+let g:ctrlp_map = 'ff'
 
 " BASICS
 set history=1000
@@ -73,8 +81,7 @@ set updatetime=750
 set splitbelow
 set splitright
 set virtualedit=block
-set hidden
-set nofoldenable
+set foldenable
 
 let mapleader = ","
 
@@ -84,7 +91,7 @@ set smartcase
 set incsearch
 
 " OBERFLAECHE
-set scrolloff=10
+set scrolloff=5
 set wildmenu
 set wildignore=*.o
 set ruler
@@ -139,12 +146,12 @@ vnoremap J 5j
 vnoremap K 5k
 vnoremap H ^
 vnoremap L $
+vnoremap <A-j> }
+vnoremap <A-k> {
 
 " nützlich zum einrücken mehrerer zeilen
 vnoremap <tab> >
 vnoremap <s-tab> <
-
-vnoremap mmb %
 
 """"""""""""""""""""""""""""" INSERTMODE """""""""""""""""""""""""""""""""""""
 inoremap <down> <Nop>
@@ -152,12 +159,10 @@ inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
 
-inoremap <A-h> <left>
-inoremap <A-j> <down>
-inoremap <A-k> <up>
-inoremap <A-l> <right>
-
-inoremap <S-BS> <ESC>la<BS>
+inoremap <a-h> <left>
+inoremap <a-j> <down>
+inoremap <a-k> <up>
+inoremap <a-l> <right>
 
 " (insert) curly brackets
 inoremap <leader>cb <ESC>A<space>{}<ESC>i<CR><ESC>O
@@ -165,15 +170,15 @@ inoremap <leader>cb <ESC>A<space>{}<ESC>i<CR><ESC>O
 " (insert) (semikolon)
 inoremap <leader><leader> <ESC>A;
 
-""""""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
-" Move in quickfix window
-nnoremap <down> :cn<CR>
-nnoremap <left> <Nop>
-nnoremap <right> <Nop>
-nnoremap <up> :cp<CR>
+" prevent to switch in normalmode through shift backspace == Caps lock
+inoremap <S-BS> <BS>
 
+""""""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
 " Makros erstmal deaktiviert! Folding!
 nnoremap q za
+nnoremap qr zR
+nnoremap qm zM
+nnoremap Q <Nop>
 
 " Passende Einrückung
 nnoremap = =l
@@ -182,6 +187,7 @@ nnoremap = =l
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>q :q!<CR>
+nnoremap <leader><leader>w :w!<CR>:Matrix<CR>
 nnoremap ! :w<CR>:!
 
 " Navigation innerhalb von Splitts
@@ -235,14 +241,6 @@ nmap fj <Plug>(easymotion-f)
 nmap fl <Plug>(easymotion-fl)
 nmap fk <Plug>(easymotion-F)
 nmap fh <Plug>(easymotion-Fl)
-nmap fb <Plug>(easymotion-b)
-nmap fw <Plug>(easymotion-w)
-nmap fe <Plug>(easymotion-e)
-nmap fge <Plug>(easymotion-ge)
-nmap fB <Plug>(easymotion-B)
-nmap fW <Plug>(easymotion-W)
-nmap fE <Plug>(easymotion-E)
-nmap fgE <Plug>(easymotion-gE)
 
 nmap / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-sn)
@@ -252,97 +250,9 @@ nnoremap # <Nop>
 nnoremap * <Nop>
 
 " find n replace
-nnoremap frw :%s/<c-r><c-w>//g<left><left>
+nnoremap fsw :%s/<c-r><c-w>//g<left><left>
 "find inside word
-nmap fiw /<c-r><c-w>
-
-" Substitude hole line
-nnoremap ss Vp
-
-" (do something) inside/till parenthesis
-nnoremap dip di(
-nnoremap cip ci(
-nnoremap vip vi(
-nnoremap yip yi(
-nnoremap sip vi(p
-nmap cxip cxi(
-
-nnoremap dtp dt)
-nnoremap dTp dT(
-nnoremap ctp ct)
-nnoremap cTp cT(
-nnoremap vtp vt)
-nnoremap vTp vT(
-nnoremap ytp yt)
-nnoremap yTp yT(
-
-" (do something) inside/till curly brackets
-nnoremap dicb di{
-nnoremap cicb ci{
-nnoremap vicb vi{
-nnoremap yicb yi{
-nnoremap sicb vi{p
-nmap cxicb cxi{
-
-nnoremap dtcb dt}
-nnoremap dTcb dT{
-nnoremap ctcb ct}
-nnoremap cTcb cT{
-nnoremap vtcb vt}
-nnoremap vTcb vT{
-nnoremap ytcb yt{
-nnoremap yTcb yT}
-
-" (do something) inside/till square brackets
-nnoremap disb di[
-nnoremap cisb ci[
-nnoremap visb vi[
-nnoremap yisb yi[
-nnoremap sisb vi[p
-nmap cxib cxi[
-
-nnoremap dtsb dt]
-nnoremap dTsb dT[
-nnoremap ctsb ct]
-nnoremap cTsb cT[
-nnoremap vtsb vt]
-nnoremap vTsb vT[
-nnoremap ytsb yt]
-nnoremap yTsb yT[
-
-" (do something) inside/till angle brackets
-nnoremap diab di<
-nnoremap ciab ci<
-nnoremap viab vi<
-nnoremap yiab yi<
-nnoremap siab vi<p
-nmap cxiab cxi<
-
-nnoremap dtab dt>
-nnoremap dTab dT<
-nnoremap ctab ct>
-nnoremap cTab cT<
-nnoremap vtab vt>
-nnoremap vTab vT<
-nnoremap ytab yt>
-nnoremap yTab yT<
-
-" (do something) inside/till quotes
-nnoremap diq di"
-nnoremap ciq ci"
-nnoremap viq vi"
-nnoremap yiq yi"
-nnoremap siq vi"p
-nmap cxiq cxi"
-
-nnoremap dtq dt"
-nnoremap dTq dT"
-nnoremap ctq ct"
-nnoremap cTq cT"
-nnoremap vtq vt"
-nnoremap vTq vT"
-nnoremap ytq yt"
-nnoremap yTq yT"
+nmap fiw /<c-r><c-w><CR>
 
 nnoremap tr :NERDTreeToggle<CR>
 
@@ -355,14 +265,6 @@ nnoremap <leader>m m
 nnoremap m '
 " move toggle
 nnoremap ml ''
-" move to matched bracket
-nnoremap mmb %
-" move top
-nnoremap mt zt
-" move down
-nnoremap mb zb
-" move middle
-nnoremap mm zz
 
 " need to call cscope before
 " cscope neu laden
@@ -376,7 +278,6 @@ nnoremap mtc :cs find c <c-r>=expand("<cword>")<cr><cr>:copen<CR><CR>
 " move to functions (called by this function)
 nnoremap mtf :cs find d <c-r>=expand("<cword>")<cr><cr>:copen<CR><CR>
 
-
 " repeat schneller
 nnoremap <space> .
 
@@ -385,7 +286,6 @@ nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
 nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
 nnoremap <F3> :set background=dark<CR>
 nnoremap <F4> :set background=light<CR>
-
 
 " vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
@@ -399,6 +299,8 @@ nnoremap <A-b> :make<CR>:botright copen<CR><C-w>w
 nnoremap <A-m> :!make 
 
 if has("win32") || has('win64')
+  set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga
+
   if has("cscope")
     set cscopequickfix=s-,d-,c-,g-
     set csto=0
@@ -408,6 +310,9 @@ if has("win32") || has('win64')
       cs add $CSCOPE_DB
     endif
   endif
+
+else
+  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 endif
 
 """"""""""""""""""""""""""""" AUTOCOMMANDS """""""""""""""""""""""""""""""""""
@@ -430,6 +335,8 @@ function! FoldMarker()
     if match(thisline, '[{,]$') >= 0
       return ">1"
     endif
+  elseif match(thisline, '^}') >= 0
+    return "<1"
   else
     return "="
   endif

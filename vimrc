@@ -63,9 +63,6 @@ let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj,'
 
 let g:SuperTabCompleteCase = 'ignore'
 
-" finde file
-let g:ctrlp_map = 'ff'
-
 " BASICS
 set history=1000
 set autoread
@@ -97,13 +94,13 @@ set wildignore=*.o
 set ruler
 set number
 set cmdheight=1
-set laststatus=2
+set laststatus=1
 syntax on
 set cursorline
 set t_Co=256
 
 " STATUSBAR
-set statusline-=%t
+" set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
 set background=dark
 colorscheme solarized

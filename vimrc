@@ -38,10 +38,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tommcdo/vim-exchange'
 " Fuzzy finder
 Plugin 'kien/ctrlp.vim'
-
-" ....... hahahahaahh
-Plugin 'mmisono/snake.vim'
-Plugin 'uguu-org/vim-matrix-screensaver'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
@@ -184,7 +181,6 @@ nnoremap = =l
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>q :q!<CR>
-nnoremap <leader><leader>w :w!<CR>:Matrix<CR>
 nnoremap ! :w<CR>:!
 
 " Navigation innerhalb von Splitts

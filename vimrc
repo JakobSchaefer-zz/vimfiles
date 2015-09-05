@@ -1,10 +1,8 @@
-" SETTINGS " SETTINGS " SETTINGS " SETTINGS " SETTINGS " SETTINGS " SETTINGS "
-""""""""""""""""""""""""""" GVIM SETTINGS """"""""""""""""""""""""""""""""""""
 if has("gui_running")
-  set guioptions-=m  "remove menu bar
-  set guioptions-=T  "remove toolbar
-  set guioptions-=r  "remove right-hand scroll bar
-  set guioptions-=L  "remove left-hand scroll bar
+  set guioptions-=m  "entfernt menu bar
+  set guioptions-=T  "entfernt toolbar
+  set guioptions-=r  "entfernt right-hand scroll bar
+  set guioptions-=L  "entfernt left-hand scroll bar
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
@@ -14,6 +12,7 @@ if has("gui_running")
   endif
 endif
 autocmd GUIEnter * set t_vb=
+
 """""""""""""""""""""""""""""" VUNDLE """"""""""""""""""""""""""""""""""""""""
 set nocompatible
 filetype off
@@ -21,24 +20,46 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+""""""""""""""""" Kann sich selbst updaten, VimPluginManager
 Plugin 'gmarik/Vundle.vim'
-" Boooooom
+
+""""""""""""""""" Schnelles und schöneres Suchen
 Plugin 'Lokaltog/vim-easymotion'
-" Automatische Klammerung
+" find and replace
+nnoremap fsw :%s/<c-r><c-w>//g<left><left>
+" find inside word
+nmap fiw /<c-r><c-w><CR>
+
+""""""""""""""""" Automatisches einfügen der schliessenden Klammern
 Plugin 'Raimondi/delimitMate'
-" ctrl-n super schnell und unkompliziert
-Plugin 'ervandew/supertab'
-" Besserer Filetree
-Plugin 'scrooloose/nerdtree'
-" Nur zum kommentieren einzelner zeilen
-Plugin 'scrooloose/nerdcommenter'
-" Helleres farbschema
-Plugin 'altercation/vim-colors-solarized'
-" Main colorshemeeeeemeee
-Plugin 'tommcdo/vim-exchange'
-" Fuzzy finder
-Plugin 'kien/ctrlp.vim'
+
+""""""""""""""""" Schnelles ändern von Klammerungen
+" change surrounding:   cs{akutelleklammerung}{neueklammerung}
+" yank surrounding:     ys{motion}{klammerung}
+" delete surrounding:   ds{klammerung}
 Plugin 'tpope/vim-surround'
+
+""""""""""""""""" super schnell und unkompliziert
+Plugin 'ervandew/supertab'
+
+""""""""""""""""" Besserer Filetree
+Plugin 'scrooloose/nerdtree'
+nnoremap tr :NERDTreeToggle<CR>
+
+""""""""""""""""" Nur zum kommentieren einzelner zeilen
+Plugin 'scrooloose/nerdcommenter'
+" Auskommentieren toogle: Alt-q
+nmap <A-q> ,c 
+vmap <A-q> ,c 
+
+""""""""""""""""" Helleres farbschema
+Plugin 'altercation/vim-colors-solarized'
+
+""""""""""""""""" cx{motion} und nochmal cx{motion} bzw . tauscht die Bereiche aus
+Plugin 'tommcdo/vim-exchange'
+
+""""""""""""""""" Fuzzy finder
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 
@@ -70,7 +91,7 @@ set t_vb=
 set tm=500
 
 set lines=50
-set columns=80
+set columns=120
 set updatetime=750
 set splitbelow
 set splitright
@@ -242,34 +263,8 @@ nmap  N <Plug>(easymotion-prev)
 nnoremap # <Nop>
 nnoremap * <Nop>
 
-" find n replace
-nnoremap fsw :%s/<c-r><c-w>//g<left><left>
-"find inside word
-nmap fiw /<c-r><c-w><CR>
-
-nnoremap tr :NERDTreeToggle<CR>
-
 " SUCHE
 nmap . /
-
-" (insert) mark
-nnoremap <leader>m m
-" move
-nnoremap m '
-" move toggle
-nnoremap ml ''
-
-" need to call cscope before
-" cscope neu laden
-nnoremap <silent> <F11> :cs kill -1<CR>:!cscope -Rb<CR>:cs add cscope.out<CR>
-" move to definition
-nnoremap mtd :cs find g <c-r>=expand("<cword>")<cr><cr>:copen<CR><CR>
-" move to appearence
-nnoremap mta :cs find s <c-r>=expand("<cword>")<cr><cr>:copen<CR><CR>
-" move to caller
-nnoremap mtc :cs find c <c-r>=expand("<cword>")<cr><cr>:copen<CR><CR>
-" move to functions (called by this function)
-nnoremap mtf :cs find d <c-r>=expand("<cword>")<cr><cr>:copen<CR><CR>
 
 " repeat schneller
 nnoremap <space> .
@@ -283,9 +278,6 @@ nnoremap <F4> :set background=light<CR>
 " vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
 
-" Codezeilen und Bereiche auskommentieren
-nmap <A-q> ,c 
-vmap <A-q> ,c 
 
 " Compilieren
 nnoremap <A-b> :make<CR>:botright copen<CR><C-w>w
@@ -293,17 +285,6 @@ nnoremap <A-m> :!make
 
 if has("win32") || has('win64')
   set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga
-
-  if has("cscope")
-    set cscopequickfix=s-,d-,c-,g-
-    set csto=0
-    if filereadable("cscope.out")
-      cs add cscope.out
-    elseif $CSCOPE_DB != ""
-      cs add $CSCOPE_DB
-    endif
-  endif
-
 else
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 endif

@@ -61,6 +61,9 @@ Plugin 'tommcdo/vim-exchange'
 """"""""""""""""" Fuzzy finder
 Plugin 'kien/ctrlp.vim'
 
+""""""""""""""""" für kleinere dinge super nützlich
+Plugin 'SirVer/ultisnips'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -81,6 +84,10 @@ let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj,'
 
 let g:SuperTabCompleteCase = 'ignore'
 
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 " BASICS
 set history=1000
 set autoread
@@ -97,6 +104,7 @@ set splitbelow
 set splitright
 set virtualedit=block
 set foldenable
+set foldlevel=99
 
 let mapleader = ","
 
@@ -113,7 +121,6 @@ set ruler
 set number
 set cmdheight=1
 set laststatus=1
-syntax on
 set cursorline
 set t_Co=256
 
@@ -127,7 +134,7 @@ set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
 set list
 hi MatchParen cterm=bold ctermbg=none ctermfg=blue
-match Title /TODO/
+syntax enable
 
 """""""""""""""""""""""""""" SICHERUNGEN """""""""""""""""""""""""""""""""""""
 set nobackup
@@ -188,7 +195,15 @@ inoremap <leader><leader> <ESC>A;
 " prevent to switch in normalmode through shift backspace == Caps lock
 inoremap <S-BS> <BS>
 
+" einfügen vim clipboard
+inoremap <c-v> <c-R>*
+
 """"""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
+nnoremap <down> ddp
+nnoremap <left> <Nop>
+nnoremap <right> J
+nnoremap <up> ddkP
+
 " Makros erstmal deaktiviert! Folding!
 nnoremap q za
 nnoremap qr zR
@@ -269,6 +284,7 @@ nmap . /
 " repeat schneller
 nnoremap <space> .
 
+
 " Setzen der Farben für hellere Umgebungen
 nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
 nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
@@ -277,7 +293,6 @@ nnoremap <F4> :set background=light<CR>
 
 " vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
-
 
 " Compilieren
 nnoremap <A-b> :make<CR>:botright copen<CR><C-w>w
@@ -323,4 +338,12 @@ endfunction
 
 autocmd FileType cpp setlocal foldmethod=expr foldexpr=FoldMarker() foldtext=FoldMarkerText()
 
-""""""""""""""""""""""""""""" ABBRIVIATIONS """"""""""""""""""""""""""""""""""
+" Keywörter in den Kommentaren
+autocmd Syntax * syntax keyword ImportantNote containedin=.*Comment.* contained IMPORTANT
+autocmd Syntax * syntax keyword StudyNote containedin=.*Comment.* contained STUDY
+autocmd Syntax * syntax keyword NoteNote containedin=.*Comment.* contained NOTE
+autocmd Syntax * syntax keyword TodoNote containedin=.*Comment.* contained TODO
+hi ImportantNote term=bold ctermfg=14 gui=bold guifg=Yellow
+hi StudyNote term=bold ctermfg=14 gui=bold guifg=#b58900
+hi NoteNote term=bold ctermfg=14 gui=bold guifg=#719e07
+hi TodoNote term=bold ctermfg=14 gui=bold guifg=#dc322f

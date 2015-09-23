@@ -22,48 +22,18 @@ call vundle#begin()
 
 """"""""""""""""" Kann sich selbst updaten, VimPluginManager
 Plugin 'gmarik/Vundle.vim'
-
-""""""""""""""""" Schnelles und schöneres Suchen
 Plugin 'Lokaltog/vim-easymotion'
-" find and replace
-nnoremap fsw :%s/<c-r><c-w>//g<left><left>
-" find inside word
-nmap fiw /<c-r><c-w><CR>
-
-""""""""""""""""" Automatisches einfügen der schliessenden Klammern
 Plugin 'Raimondi/delimitMate'
-
-""""""""""""""""" Schnelles ändern von Klammerungen
-" change surrounding:   cs{akutelleklammerung}{neueklammerung}
-" yank surrounding:     ys{motion}{klammerung}
-" delete surrounding:   ds{klammerung}
 Plugin 'tpope/vim-surround'
-
-""""""""""""""""" super schnell und unkompliziert
 Plugin 'ervandew/supertab'
-
-""""""""""""""""" Besserer Filetree
-Plugin 'scrooloose/nerdtree'
-nnoremap tr :NERDTreeToggle<CR>
-
-""""""""""""""""" Nur zum kommentieren einzelner zeilen
 Plugin 'scrooloose/nerdcommenter'
-" Auskommentieren toogle: Alt-q
-nmap <A-q> ,c 
-vmap <A-q> ,c 
-
-""""""""""""""""" Helleres farbschema
 Plugin 'altercation/vim-colors-solarized'
-
-""""""""""""""""" cx{motion} und nochmal cx{motion} bzw . tauscht die Bereiche aus
 Plugin 'tommcdo/vim-exchange'
-
-""""""""""""""""" Fuzzy finder
 Plugin 'kien/ctrlp.vim'
-
-""""""""""""""""" für kleinere dinge super nützlich
 Plugin 'SirVer/ultisnips'
-
+Plugin 'sickill/vim-pasta'
+Plugin 'xoria256.vim'
+Plugin 'sjl/gundo.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -84,8 +54,8 @@ let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj,'
 
 let g:SuperTabCompleteCase = 'ignore'
 
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger = "<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " BASICS
@@ -118,7 +88,7 @@ set scrolloff=5
 set wildmenu
 set wildignore=*.o
 set ruler
-set number
+set relativenumber
 set cmdheight=1
 set laststatus=1
 set cursorline
@@ -144,14 +114,14 @@ set noswapfile
 """""""""""""""""""""" TABS UND ZEILENUMBRUECHE """"""""""""""""""""""""""""""
 set smarttab
 set expandtab
-set shiftwidth=2
 set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set linebreak
 set tw=500 " Zeilenumbruch nach 500 Zeichen
 set autoindent
 set smartindent
 set wrap
-set nolist
 set formatoptions+=v
 set formatoptions+=l
 
@@ -163,13 +133,14 @@ vnoremap <left> <Nop>
 vnoremap <right> <Nop>
 vnoremap <up> <Nop>
 
-" Navigation im viusal mode
-vnoremap J 5j
-vnoremap K 5k
-vnoremap H ^
-vnoremap L $
+vnoremap J 10j
+vnoremap K 10k
+
 vnoremap <A-j> }
 vnoremap <A-k> {
+
+vnoremap <c-c> :y+<cr>
+vnoremap <c-v> :put +<cr>
 
 " nützlich zum einrücken mehrerer zeilen
 vnoremap <tab> >
@@ -181,37 +152,25 @@ inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
 
-inoremap <a-h> <left>
-inoremap <a-j> <down>
-inoremap <a-k> <up>
-inoremap <a-l> <right>
-
-" (insert) curly brackets
-inoremap <leader>cb <ESC>A<space>{}<ESC>i<CR><ESC>O
-
-" (insert) (semikolon)
-inoremap <leader><leader> <ESC>A;
-
 " prevent to switch in normalmode through shift backspace == Caps lock
 inoremap <S-BS> <BS>
 
-" einfügen vim clipboard
-inoremap <c-v> <c-R>*
+" paste in insert mode
+inoremap <c-v> <c-r>*
 
 """"""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
-nnoremap <down> ddp
+nnoremap <down> :cn<cr>
 nnoremap <left> <Nop>
 nnoremap <right> J
-nnoremap <up> ddkP
+nnoremap <up> :cp<cr>
 
-" Makros erstmal deaktiviert! Folding!
-nnoremap q za
-nnoremap qr zR
-nnoremap qm zM
+" copy and paste a la ctrl-c ctr-v
+nnoremap <c-c> V:y+<cr>
+nnoremap <c-v> :put +<cr>
+
+nnoremap M '
+" Disable exmode
 nnoremap Q <Nop>
-
-" Passende Einrückung
-nnoremap = =l
 
 " Schnelles speichern und schliessen von Dokumenten
 nnoremap <leader>w :w!<CR>
@@ -232,15 +191,12 @@ nnoremap gl <c-w>l
 nnoremap gt <Nop>
 nnoremap gT <Nop>
 
-" Navigation überspringt nun keine Zeilenumbrüche
-nnoremap k gk
-nnoremap j gj
+nnoremap <a-o> o<esc>k
+nnoremap <a-O> O<esc>j
 
-" Intuitivere Navigation mit shift und alt
-nnoremap J 5j
-nnoremap K 5k
-nnoremap H ^
-nnoremap L $
+nnoremap J 10j
+nnoremap K 10k
+
 nnoremap <A-l> gt
 nnoremap <A-h> gT
 nnoremap <A-j> }
@@ -248,10 +204,6 @@ nnoremap <A-k> {
 
 " Redo!
 nnoremap U <c-R>
-
-"Caps ändern
-nnoremap + ~
-nnoremap ~ <Nop>
 
 " Handlicherer visual mode
 " visual block
@@ -263,19 +215,11 @@ nnoremap vv <S-v>
 nnoremap <tab> >>
 nnoremap <s-tab> <<
 
-" Plugin settings and mappings
-" find key
-nnoremap f <Nop>
-nmap fj <Plug>(easymotion-f)
-nmap fl <Plug>(easymotion-fl)
-nmap fk <Plug>(easymotion-F)
-nmap fh <Plug>(easymotion-Fl)
-
 nmap / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-sn)
 nmap  n <Plug>(easymotion-next)
 nmap  N <Plug>(easymotion-prev)
-nnoremap # <Nop>
+nmap # /<c-r><c-w><CR>
 nnoremap * <Nop>
 
 " SUCHE
@@ -283,7 +227,6 @@ nmap . /
 
 " repeat schneller
 nnoremap <space> .
-
 
 " Setzen der Farben für hellere Umgebungen
 nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
@@ -317,26 +260,6 @@ autocmd bufnewfile *.cpp exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " 
 autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
 autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
 autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-
-function! FoldMarker()
-  let thisline = getline(v:lnum)
-  if match(thisline, '^[a-zA-Z]') >= 0
-    if match(thisline, '[{,]$') >= 0
-      return ">1"
-    endif
-  elseif match(thisline, '^}') >= 0
-    return "<1"
-  else
-    return "="
-  endif
-endfunction
-
-function! FoldMarkerText()
-  let foldsize = (v:foldend-v:foldstart)
-  return getline(v:foldstart).' ('.foldsize.' Zeilen) '
-endfunction
-
-autocmd FileType cpp setlocal foldmethod=expr foldexpr=FoldMarker() foldtext=FoldMarkerText()
 
 " Keywörter in den Kommentaren
 autocmd Syntax * syntax keyword ImportantNote containedin=.*Comment.* contained IMPORTANT

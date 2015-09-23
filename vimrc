@@ -44,8 +44,7 @@ set makeprg=build.bat
 " Space after //
 let g:NERDSpaceDelims = 1
 
-" nerdtree on speed
-let g:NERDTreeQuitOnOpen = 1
+let delimitMate_matchpairs = "(:),[:],{:},<:>"
 
 " i am a lazy shifter
 let g:EasyMotion_smartcase = 1
@@ -70,8 +69,8 @@ set tm=500
 set lines=50
 set columns=120
 set updatetime=750
-set splitbelow
 set splitright
+set splitbelow
 set virtualedit=block
 set foldenable
 set foldlevel=99
@@ -169,8 +168,8 @@ nnoremap <c-c> V:y+<cr>
 nnoremap <c-v> :put +<cr>
 
 nnoremap M '
-" Disable exmode
-nnoremap Q <Nop>
+
+nnoremap Q :normal n<space><cr>
 
 " Schnelles speichern und schliessen von Dokumenten
 nnoremap <leader>w :w!<CR>
@@ -219,7 +218,7 @@ nmap / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-sn)
 nmap  n <Plug>(easymotion-next)
 nmap  N <Plug>(easymotion-prev)
-nmap # /<c-r><c-w><CR>
+nmap # /<c-r><c-w><CR><CR>N
 nnoremap * <Nop>
 
 " SUCHE
@@ -238,7 +237,7 @@ nnoremap <F4> :set background=light<CR>
 nnoremap <F12> :so $MYVIMRC<CR>
 
 " Compilieren
-nnoremap <A-b> :make<CR>:botright copen<CR><C-w>w
+nnoremap <A-b> :make<CR>:vert copen 100<CR><C-w>w
 nnoremap <A-m> :!make 
 
 if has("win32") || has('win64')

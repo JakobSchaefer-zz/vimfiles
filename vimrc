@@ -229,6 +229,7 @@ nnoremap * <Nop>
 nmap . /
 
 nnoremap <leader>. :CtrlPTag<cr>
+nnoremap * <c-]>
 
 " repeat schneller
 nnoremap <space> .

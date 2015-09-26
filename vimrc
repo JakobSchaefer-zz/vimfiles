@@ -22,18 +22,21 @@ call vundle#begin()
 
 """"""""""""""""" Kann sich selbst updaten, VimPluginManager
 Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/NERDCommenter'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'sickill/vim-pasta'
-Plugin 'xoria256.vim'
 Plugin 'sjl/gundo.vim'
+
+" STUDY This
+Plugin 'tpope/vim-repeat'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -44,18 +47,21 @@ set makeprg=build.bat
 " Space after //
 let g:NERDSpaceDelims = 1
 
-let delimitMate_matchpairs = "(:),[:],{:},<:>"
+let delimitMate_matchpairs = "(:),[:],{:}"
 
 " i am a lazy shifter
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj,'
+map \ <Plug>(easymotion-prefix)
 
 let g:SuperTabCompleteCase = 'ignore'
 
 let g:UltiSnipsExpandTrigger = "<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger = "<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:ctrlp_map = '<leader>p'
 
 " BASICS
 set history=1000
@@ -159,15 +165,13 @@ inoremap <c-v> <c-r>*
 
 """"""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
 nnoremap <down> :cn<cr>
-nnoremap <left> <Nop>
+nnoremap <left> xi<cr><esc>kA<esc>
 nnoremap <right> J
 nnoremap <up> :cp<cr>
 
 " copy and paste a la ctrl-c ctr-v
 nnoremap <c-c> V:y+<cr>
 nnoremap <c-v> :put +<cr>
-
-nnoremap M '
 
 nnoremap Q :normal n<space><cr>
 
@@ -224,6 +228,8 @@ nnoremap * <Nop>
 " SUCHE
 nmap . /
 
+nnoremap <leader>. :CtrlPTag<cr>
+
 " repeat schneller
 nnoremap <space> .
 
@@ -233,11 +239,14 @@ nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
 nnoremap <F3> :set background=dark<CR>
 nnoremap <F4> :set background=light<CR>
 
+set tags+=./tags
+
 " vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
 
 " Compilieren
-nnoremap <A-b> :make<CR>:vert copen 100<CR><C-w>w
+nnoremap <A-t> :silent !ctags -R .<cr>
+nnoremap <A-b> :silent make<cr>:silent cw<CR>
 nnoremap <A-m> :!make 
 
 if has("win32") || has('win64')

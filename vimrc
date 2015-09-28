@@ -41,9 +41,6 @@ call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
-compiler msvc
-set makeprg=build.bat
-
 " Space after //
 let g:NERDSpaceDelims = 1
 
@@ -173,7 +170,7 @@ nnoremap <up> :cp<cr>
 nnoremap <c-c> V:y+<cr>
 nnoremap <c-v> :put +<cr>
 
-nnoremap Q :normal n<space><cr>
+nnoremap Q <nop>
 
 " Schnelles speichern und schliessen von Dokumenten
 nnoremap <leader>w :w!<CR>
@@ -222,14 +219,11 @@ nmap / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-sn)
 nmap  n <Plug>(easymotion-next)
 nmap  N <Plug>(easymotion-prev)
-nmap # /<c-r><c-w><CR><CR>N
-nnoremap * <Nop>
+nmap # /<c-r><c-w><CR><esc>
+nnoremap * <c-]>
 
 " SUCHE
 nmap . /
-
-nnoremap <leader>. :CtrlPTag<cr>
-nnoremap * <c-]>
 
 " repeat schneller
 nnoremap <space> .
@@ -237,18 +231,15 @@ nnoremap <space> .
 " Setzen der Farben für hellere Umgebungen
 nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
 nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
-nnoremap <F3> :set background=dark<CR>
-nnoremap <F4> :set background=light<CR>
-
-set tags+=./tags
+nnoremap <F3> :compiler tex<CR>:set makeprg=make<CR>
+nnoremap <F12> :set background=dark<CR>
+nnoremap <F11> :set background=light<CR>
 
 " vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
 
 " Compilieren
-nnoremap <A-t> :silent !ctags -R .<cr>
-nnoremap <A-b> :silent make<cr>:silent cw<CR>
-nnoremap <A-m> :!make 
+nnoremap <A-b> :silent make<cr>:cw<CR>
 
 if has("win32") || has('win64')
   set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga

@@ -22,20 +22,21 @@ call vundle#begin()
 
 """"""""""""""""" Kann sich selbst updaten, VimPluginManager
 Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/NERDCommenter'
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'ervandew/supertab'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tommcdo/vim-exchange'
+Plugin 'tommcdo/vim-lion'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'sickill/vim-pasta'
-Plugin 'sjl/gundo.vim'
 
-" STUDY This
-Plugin 'tpope/vim-repeat'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-line'
+Plugin 'kana/vim-textobj-indent'
+Plugin 'julian/vim-textobj-variable-segment'
 
 call vundle#end()
 
@@ -45,12 +46,6 @@ filetype plugin indent on
 let g:NERDSpaceDelims = 1
 
 let delimitMate_matchpairs = "(:),[:],{:}"
-
-" i am a lazy shifter
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_enter_jump_first = 1
-let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj,'
-map \ <Plug>(easymotion-prefix)
 
 let g:SuperTabCompleteCase = 'ignore'
 
@@ -128,117 +123,107 @@ set formatoptions+=v
 set formatoptions+=l
 
 " MAPING " MAPING " MAPPING " MAPPING " MAPPING " MAPPING " MAPPING "
-""""""""""""""""""""""""""""" VISUALMODE """""""""""""""""""""""""""""""""""""
-" Deaktiviert die Pfeiltasten
+" ===================================================================
+nnoremap <down> :cn<cr>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <up> :cp<cr>
+
 vnoremap <down> <Nop>
 vnoremap <left> <Nop>
 vnoremap <right> <Nop>
 vnoremap <up> <Nop>
 
-vnoremap J 10j
-vnoremap K 10k
-
-vnoremap <A-j> }
-vnoremap <A-k> {
-
-vnoremap <c-c> :y+<cr>
-vnoremap <c-v> :put +<cr>
-
-" nützlich zum einrücken mehrerer zeilen
-vnoremap <tab> >
-vnoremap <s-tab> <
-
-""""""""""""""""""""""""""""" INSERTMODE """""""""""""""""""""""""""""""""""""
 inoremap <down> <Nop>
 inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
 
-" prevent to switch in normalmode through shift backspace == Caps lock
-inoremap <S-BS> <BS>
 
-" paste in insert mode
-inoremap <c-v> <c-r>*
+" ------------
+nnoremap J 10j
+nnoremap K 10k
 
-""""""""""""""""""""""""""""" NORMALMODE """""""""""""""""""""""""""""""""""""
-nnoremap <down> :cn<cr>
-nnoremap <left> xi<cr><esc>kA<esc>
-nnoremap <right> J
-nnoremap <up> :cp<cr>
+vnoremap J 10j
+vnoremap K 10k
 
-" copy and paste a la ctrl-c ctr-v
+onoremap J 10j
+onoremap K 10k
+
+
+" ------------
+nnoremap <A-j> }
+nnoremap <A-k> {
+
+vnoremap <A-j> }
+vnoremap <A-k> {
+
+onoremap <A-j> }
+onoremap <A-k> {
+
+
+" ------------ copy and paste ala ctrl-c ctrl-v
 nnoremap <c-c> V:y+<cr>
 nnoremap <c-v> :put +<cr>
 
-nnoremap Q <nop>
+vnoremap <c-c> :y+<cr>
+vnoremap <c-v> :put +<cr>
 
-" Schnelles speichern und schliessen von Dokumenten
+inoremap <c-v> <c-r>*
+
+
+" ------------ Verhindert capslock durch shift backspace
+inoremap <S-BS> <BS>
+
+
+" ------------ Repeat last makro
+nnoremap Q @@
+
+
+" ------------ Schnelles speichern und schliessen von Dokumenten
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>q :q!<CR>
 nnoremap ! :w<CR>:!
 
-" Navigation innerhalb von Splitts
-" go (split right)
+
+" ------------ Navigation innerhalb von Splitts und tabs
 nnoremap gk <C-w>k
-" go (split down)
 nnoremap gj <C-w>j
-" go (split left)
 nnoremap gh <C-w>h
-" go (split right)
 nnoremap gl <c-w>l
 
 nnoremap gt <Nop>
 nnoremap gT <Nop>
 
-nnoremap <a-o> o<esc>k
-nnoremap <a-O> O<esc>j
-
-nnoremap J 10j
-nnoremap K 10k
-
 nnoremap <A-l> gt
 nnoremap <A-h> gT
-nnoremap <A-j> }
-nnoremap <A-k> {
 
-" Redo!
+
+" ------------ Redo!
 nnoremap U <c-R>
 
-" Handlicherer visual mode
-" visual block
+
+" ------------ Handlicherer visual mode
 nnoremap V <C-v>
-" visual row
 nnoremap vv <S-v>
 
-" Tab zum Einrücken
-nnoremap <tab> >>
-nnoremap <s-tab> <<
 
-nmap / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-sn)
-nmap  n <Plug>(easymotion-next)
-nmap  N <Plug>(easymotion-prev)
-nmap # /<c-r><c-w><CR><esc>
+" ------------ misc
+nnoremap # /<c-r><c-w><CR>N
 nnoremap * <c-]>
 
-" SUCHE
-nmap . /
+nnoremap + ~
 
-" repeat schneller
 nnoremap <space> .
 
-" Setzen der Farben für hellere Umgebungen
 nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
 nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
 nnoremap <F3> :compiler tex<CR>:set makeprg=make<CR>
-nnoremap <F12> :set background=dark<CR>
+nnoremap <F10> :set background=dark<CR>
 nnoremap <F11> :set background=light<CR>
-
-" vimrc neu laden
 nnoremap <F12> :so $MYVIMRC<CR>
 
-" Compilieren
 nnoremap <A-b> :silent make<cr>:cw<CR>
 
 if has("win32") || has('win64')
@@ -248,19 +233,6 @@ else
 endif
 
 """"""""""""""""""""""""""""" AUTOCOMMANDS """""""""""""""""""""""""""""""""""
-" header in c files
-autocmd bufnewfile *.c so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.c exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
-autocmd bufnewfile *.c exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-
-autocmd bufnewfile *.cpp so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.cpp exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
-autocmd bufnewfile *.cpp exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-
-autocmd bufnewfile *.h so ~/vimfiles/cfheader.txt
-autocmd bufnewfile *.h exe "1," . 6 . "g/File Name:.*/s//File Name: " .expand("%:t")
-autocmd bufnewfile *.h exe "1," . 6 . "g/Creation Date:.*/s//Creation Date: " .strftime("%d-%m-%Y")
-
 " Keywörter in den Kommentaren
 autocmd Syntax * syntax keyword ImportantNote containedin=.*Comment.* contained IMPORTANT
 autocmd Syntax * syntax keyword StudyNote containedin=.*Comment.* contained STUDY

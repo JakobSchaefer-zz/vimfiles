@@ -194,16 +194,6 @@ nnoremap gJ <C-w>J
 nnoremap gH <C-w>H
 nnoremap gL <c-w>L
 
-nnoremap GK <C-w>K
-nnoremap GJ <C-w>J
-nnoremap GH <C-w>H
-nnoremap GL <c-w>L
-
-nnoremap Gk <C-w>K
-nnoremap Gj <C-w>J
-nnoremap Gh <C-w>H
-nnoremap Gl <c-w>L
-
 nnoremap gt <Nop>
 nnoremap gT <Nop>
 
@@ -232,8 +222,15 @@ nnoremap ´ `
 onoremap ´ `
 vnoremap ´ `
 
+set makeprg=build.bat
+compiler msvc
+
 nnoremap <F1> :set background=dark<CR>
 nnoremap <F2> :set background=light<CR>
+nnoremap <F5> :compiler msvc<CR>
+nnoremap <F6> :compiler gcc<CR>
+nnoremap <F7> :set makeprg=build.bat<CR>
+nnoremap <F8> :set makeprg=make<CR>
 nnoremap <F12> :so $MYVIMRC<CR>
 
 nnoremap <A-b> :silent make<cr>:copen<CR>

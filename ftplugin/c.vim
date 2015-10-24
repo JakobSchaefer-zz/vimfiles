@@ -5,7 +5,7 @@ inoremap .. ->
 " (insert) (semikolon)
 inoremap <leader><leader> <ESC>A;
 compiler msvc
-set makeprg=build.bat
+setlocal makeprg=build.bat
 
 nnoremap <A-t> :silent !ctags -R .<cr>
 set tags+=./tags

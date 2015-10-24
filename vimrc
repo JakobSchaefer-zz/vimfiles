@@ -1,8 +1,11 @@
+" TODO: - substitute command?
+"       - floatingpoint input via numpad
+
 if has("gui_running")
-  set guioptions-=m  "entfernt menu bar
-  set guioptions-=T  "entfernt toolbar
-  set guioptions-=r  "entfernt right-hand scroll bar
-  set guioptions-=L  "entfernt left-hand scroll bar
+  set guioptions-=m  " entfernt menu bar
+  set guioptions-=T  " entfernt toolbar
+  set guioptions-=r  " entfernt right-hand scroll bar
+  set guioptions-=L  " entfernt left-hand scroll bar
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
@@ -22,13 +25,12 @@ call vundle#begin()
 
 """"""""""""""""" Kann sich selbst updaten, VimPluginManager
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'ervandew/supertab'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tommcdo/vim-exchange'
-Plugin 'tommcdo/vim-lion'
+Plugin 'tomtom/tcomment_vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'sickill/vim-pasta'
@@ -36,24 +38,28 @@ Plugin 'sickill/vim-pasta'
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-indent'
+Plugin 'kana/vim-textobj-entire'
 Plugin 'julian/vim-textobj-variable-segment'
+Plugin 'sgur/vim-textobj-parameter'
+Plugin 'glts/vim-textobj-comment'
+
+Plugin 'Townk/vim-autoclose'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 
 filetype plugin indent on
 """"""""""""""""""""
-" Space after //
-let g:NERDSpaceDelims = 1
-
-let delimitMate_matchpairs = "(:),[:],{:}"
-
+" PLUGIN Einstellungen und Keybindings
 let g:SuperTabCompleteCase = 'ignore'
 
 let g:UltiSnipsExpandTrigger = "<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger = "<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<leader><s-tab>"
 
-let g:ctrlp_map = '<leader>p'
+" Blockt sonst das tetobject comment
+let g:tcommentTextObjectInlineComment = ''
+
 
 " BASICS
 set history=1000
@@ -79,6 +85,7 @@ let mapleader = ","
 set nohlsearch
 set smartcase
 set incsearch
+set ignorecase
 
 " OBERFLAECHE
 set scrolloff=5
@@ -87,7 +94,7 @@ set wildignore=*.o
 set ruler
 set relativenumber
 set cmdheight=1
-set laststatus=1
+set laststatus=2
 set cursorline
 set t_Co=256
 
@@ -150,18 +157,6 @@ vnoremap K 10k
 onoremap J 10j
 onoremap K 10k
 
-
-" ------------
-nnoremap <A-j> }
-nnoremap <A-k> {
-
-vnoremap <A-j> }
-vnoremap <A-k> {
-
-onoremap <A-j> }
-onoremap <A-k> {
-
-
 " ------------ copy and paste ala ctrl-c ctrl-v
 nnoremap <c-c> V:y+<cr>
 nnoremap <c-v> :put +<cr>
@@ -174,10 +169,11 @@ inoremap <c-v> <c-r>*
 
 " ------------ Verhindert capslock durch shift backspace
 inoremap <S-BS> <BS>
+nnoremap <BS> X
 
 
-" ------------ Repeat last makro
-nnoremap Q @@
+" ------------ Repeat makro in register q
+nnoremap Q @q
 
 
 " ------------ Schnelles speichern und schliessen von Dokumenten
@@ -192,6 +188,21 @@ nnoremap gk <C-w>k
 nnoremap gj <C-w>j
 nnoremap gh <C-w>h
 nnoremap gl <c-w>l
+
+nnoremap gK <C-w>K
+nnoremap gJ <C-w>J
+nnoremap gH <C-w>H
+nnoremap gL <c-w>L
+
+nnoremap GK <C-w>K
+nnoremap GJ <C-w>J
+nnoremap GH <C-w>H
+nnoremap GL <c-w>L
+
+nnoremap Gk <C-w>K
+nnoremap Gj <C-w>J
+nnoremap Gh <C-w>H
+nnoremap Gl <c-w>L
 
 nnoremap gt <Nop>
 nnoremap gT <Nop>
@@ -217,17 +228,18 @@ nnoremap + ~
 
 nnoremap <space> .
 
-nnoremap <F1> :compiler msvc<CR>:set makeprg=build.bat<CR>
-nnoremap <F2> :compiler gcc<CR>:set makeprg=make<CR>
-nnoremap <F3> :compiler tex<CR>:set makeprg=make<CR>
-nnoremap <F10> :set background=dark<CR>
-nnoremap <F11> :set background=light<CR>
+nnoremap ´ `
+onoremap ´ `
+vnoremap ´ `
+
+nnoremap <F1> :set background=dark<CR>
+nnoremap <F2> :set background=light<CR>
 nnoremap <F12> :so $MYVIMRC<CR>
 
-nnoremap <A-b> :silent make<cr>:cw<CR>
+nnoremap <A-b> :silent make<cr>:copen<CR>
 
 if has("win32") || has('win64')
-  set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga
+  set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga,*.sln,*.opensdf,*.sdf,*.exp,*.lib
 else
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 endif

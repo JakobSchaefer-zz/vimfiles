@@ -1,4 +1,9 @@
-inoremap <leader>cb <ESC>o{}<left><CR><ESC>O
-inoremap <leader><leader> <ESC>A;
+function! InsertCurlyBrackets()
+  normal! o{
+  normal! o}
+endfunction
 
-setlocal makeprg=build.bat
+nnoremap <leader>cb :call InsertCurlyBrackets()<cr>O
+inoremap <leader>cb <esc>:call InsertCurlyBrackets()<cr>O
+
+inoremap .. ->

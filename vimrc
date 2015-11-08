@@ -29,6 +29,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'ervandew/supertab'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'kien/ctrlp.vim'
@@ -43,8 +44,10 @@ Plugin 'julian/vim-textobj-variable-segment'
 Plugin 'sgur/vim-textobj-parameter'
 Plugin 'glts/vim-textobj-comment'
 
-Plugin 'Townk/vim-autoclose'
+Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
+
+Plugin 'embear/vim-localvimrc'
 
 call vundle#end()
 
@@ -60,6 +63,11 @@ let g:UltiSnipsJumpBackwardTrigger = "<leader><s-tab>"
 " Blockt sonst das tetobject comment
 let g:tcommentTextObjectInlineComment = ''
 
+let g:molokai_original = 1
+
+let g:localvimrc_sandbox = 0
+let g:localvimrc_ask = 0
+let g:localvimrc_name = "lvimrc"
 
 " BASICS
 set history=1000
@@ -93,6 +101,7 @@ set wildmenu
 set wildignore=*.o
 set ruler
 set relativenumber
+set number
 set cmdheight=1
 set laststatus=2
 set cursorline
@@ -102,7 +111,7 @@ set t_Co=256
 " set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
 set background=dark
-colorscheme solarized
+colorscheme molokai
 set encoding=utf8
 set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
@@ -210,6 +219,11 @@ nnoremap V <C-v>
 nnoremap vv <S-v>
 
 
+" ------------ Plugin mappings
+nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>. :CtrlPTag<cr>
+
+
 " ------------ misc
 nnoremap # /<c-r><c-w><CR>N
 nnoremap * <c-]>
@@ -222,18 +236,20 @@ nnoremap ´ `
 onoremap ´ `
 vnoremap ´ `
 
-set makeprg=build.bat
-compiler msvc
+nnoremap <F1> :set background=dark<cr>
+nnoremap <F2> :set background=light<cr>
 
-nnoremap <F1> :set background=dark<CR>
-nnoremap <F2> :set background=light<CR>
-nnoremap <F5> :compiler msvc<CR>
-nnoremap <F6> :compiler gcc<CR>
-nnoremap <F7> :set makeprg=build.bat<CR>
-nnoremap <F8> :set makeprg=make<CR>
-nnoremap <F12> :so $MYVIMRC<CR>
+nnoremap <F11> :LocalVimRC<cr>
+nnoremap <F12> :so $MYVIMRC<cr>
 
-nnoremap <A-b> :silent make<cr>:copen<CR>
+nnoremap <A-b> :silent make<cr>:copen<cr>
+
+function! CreateNewlineBelow()
+  normal! mmo
+  normal! `m
+endfunction
+
+nnoremap <a-o> :call CreateNewlineBelow()<cr>
 
 if has("win32") || has('win64')
   set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga,*.sln,*.opensdf,*.sdf,*.exp,*.lib

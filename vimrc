@@ -178,7 +178,6 @@ inoremap <c-v> <c-r>*
 
 " ------------ Verhindert capslock durch shift backspace
 inoremap <S-BS> <BS>
-nnoremap <BS> X
 
 
 " ------------ Repeat makro in register q

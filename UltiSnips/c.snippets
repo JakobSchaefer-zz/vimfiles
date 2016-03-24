@@ -7,6 +7,11 @@ snippet skel "c files Header" b
 // #####################################################################################
 $0
 endsnippet
+snippet desc "describe" b
+/*
+ * $0
+ */
+endsnippet
 snippet todo "todo note" b
 // TODO(Jakob): $0
 endsnippet
@@ -24,6 +29,21 @@ snippet hguard "header guard" b
 #define $1
 #endif // $1
 endsnippet
-snippet com "comment" b
+snippet com "comment"
 /* $0 */
+endsnippet
+snippet if "if block" b
+if($1)
+{$0
+}
+endsnippet
+snippet else "else block" b
+else
+{$0
+}
+endsnippet
+snippet for "for block" b
+for($1; $2; $3)
+{$0
+}
 endsnippet

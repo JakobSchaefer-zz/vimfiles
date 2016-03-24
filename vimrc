@@ -1,4 +1,4 @@
-" TODO: - substitute command?
+"TODO: - substitute command?
 "       - floatingpoint input via numpad
 
 if has("gui_running")
@@ -35,6 +35,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'sickill/vim-pasta'
+Plugin 'chriskempson/base16-vim'
 
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-line'
@@ -111,7 +112,7 @@ set t_Co=256
 " set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
 set background=dark
-colorscheme molokai
+colorscheme base16-default
 set encoding=utf8
 set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
@@ -157,14 +158,14 @@ inoremap <up> <Nop>
 
 
 " ------------
-nnoremap J 10j
-nnoremap K 10k
+nnoremap J 5j
+nnoremap K 5k
 
-vnoremap J 10j
-vnoremap K 10k
+vnoremap J 5j
+vnoremap K 5k
 
-onoremap J 10j
-onoremap K 10k
+onoremap J 5j
+onoremap K 5k
 
 " ------------ copy and paste ala ctrl-c ctrl-v
 nnoremap <c-c> V:y+<cr>
@@ -227,6 +228,9 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap # /<c-r><c-w><CR>N
 nnoremap * <c-]>
 
+nnoremap <A-k> <c-u>
+nnoremap <A-j> <c-d>
+
 nnoremap + ~
 
 nnoremap <space> .
@@ -241,7 +245,8 @@ nnoremap <F2> :set background=light<cr>
 nnoremap <F11> :LocalVimRC<cr>
 nnoremap <F12> :so $MYVIMRC<cr>
 
-nnoremap <A-b> :silent make<cr>:copen<cr>
+nnoremap <A-b> :silent make<cr>
+nnoremap <A-c> :copen<cr>
 
 function! CreateNewlineBelow()
   normal! mmo

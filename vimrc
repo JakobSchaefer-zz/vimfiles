@@ -1,5 +1,4 @@
 "TODO: - substitute command?
-"       - floatingpoint input via numpad
 
 if has("gui_running")
   set guioptions-=m  " entfernt menu bar
@@ -23,7 +22,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-""""""""""""""""" Kann sich selbst updaten, VimPluginManager
+" """"""""""""""""" Kann sich selbst updaten, VimPluginManager
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
@@ -60,6 +59,7 @@ let g:SuperTabCompleteCase = 'ignore'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsUsePythonVersion = 2
 
 " Blockt sonst das tetobject comment
 let g:tcommentTextObjectInlineComment = ''
@@ -69,6 +69,9 @@ let g:molokai_original = 1
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 let g:localvimrc_name = "lvimrc"
+
+let delimitMate_jump_expansion = 1
+let delimitMate_expand_cr = 1
 
 " BASICS
 set history=1000
@@ -112,7 +115,7 @@ set t_Co=256
 " set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
 set background=dark
-colorscheme base16-default
+colorscheme solarized
 set encoding=utf8
 set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
@@ -128,9 +131,9 @@ set noswapfile
 """""""""""""""""""""" TABS UND ZEILENUMBRUECHE """"""""""""""""""""""""""""""
 set smarttab
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set linebreak
 set tw=500 " Zeilenumbruch nach 500 Zeichen
 set autoindent
@@ -156,6 +159,8 @@ inoremap <left> <Nop>
 inoremap <right> <Nop>
 inoremap <up> <Nop>
 
+inoremap <A-l> <esc>la
+inoremap <A-n> <esc>la,<space>
 
 " ------------
 nnoremap J 5j

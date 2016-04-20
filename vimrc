@@ -23,19 +23,40 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " """"""""""""""""" Kann sich selbst updaten, VimPluginManager
+" Der PluginManager selbst
 Plugin 'gmarik/Vundle.vim'
+
+" Alles rundum Klammerungen
+Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
+
+" Damit vim-surround mit repeat funktioniert - mehr nicht
 Plugin 'tpope/vim-repeat'
+
+" Vervollsändigt das aktelle getippte Wort mit Tab zu etwas was bereits vorkam
 Plugin 'ervandew/supertab'
+
+" Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'sickill/vim-pasta'
 Plugin 'chriskempson/base16-vim'
 
+" Ermöglicht das tauschen von beliebigen Textobjekten
+Plugin 'tommcdo/vim-exchange'
+
+" Auskommentieren
+Plugin 'tomtom/tcomment_vim'
+
+" Fuzzyfinder für Dateien und Tags
+Plugin 'kien/ctrlp.vim'
+
+" Snippets
+Plugin 'SirVer/ultisnips'
+
+" Passives Plugin sorgt für richtiges einrücken beim kopieren und einfügen
+Plugin 'sickill/vim-pasta'
+
+" Erweitert vim um weitere Textobjekte
 Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-line'
 Plugin 'kana/vim-textobj-indent'
@@ -44,10 +65,14 @@ Plugin 'julian/vim-textobj-variable-segment'
 Plugin 'sgur/vim-textobj-parameter'
 Plugin 'glts/vim-textobj-comment'
 
-Plugin 'Raimondi/delimitMate'
+" Hübschere Statusleiste mit mehr Informationen
 Plugin 'bling/vim-airline'
 
+" Ermöglicht ein Projektspezifisches vimrc einfach 'lvimrc' nennen
 Plugin 'embear/vim-localvimrc'
+
+" Großes Plugin zum bewegen quer durch den Text
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()
 
@@ -57,8 +82,6 @@ filetype plugin indent on
 let g:SuperTabCompleteCase = 'ignore'
 
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsUsePythonVersion = 2
 
 " Blockt sonst das tetobject comment
@@ -70,8 +93,9 @@ let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 let g:localvimrc_name = "lvimrc"
 
-let delimitMate_jump_expansion = 1
 let delimitMate_expand_cr = 1
+
+map \ <Plug>(easymotion-prefix)
 
 " BASICS
 set history=1000
@@ -238,7 +262,7 @@ nnoremap <A-j> <c-d>
 
 nnoremap + ~
 
-nnoremap <space> .
+nmap <space> .
 
 nnoremap ´ `
 onoremap ´ `
@@ -246,12 +270,6 @@ vnoremap ´ `
 
 nnoremap <F1> :set background=dark<cr>
 nnoremap <F2> :set background=light<cr>
-
-nnoremap <F11> :LocalVimRC<cr>
-nnoremap <F12> :so $MYVIMRC<cr>
-
-nnoremap <A-b> :silent make<cr>
-nnoremap <A-c> :copen<cr>
 
 function! CreateNewlineBelow()
   normal! mmo

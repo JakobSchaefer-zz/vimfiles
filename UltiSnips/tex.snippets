@@ -1,0 +1,45 @@
+snippet skel "math skel" b
+% File Name: `!v expand('%:t')`
+% Creation Date: `!v strftime("%d.%m.%Y")`
+% Created By: Jakob Schäfer
+% Notice: (C) Copyright `!v strftime("%Y")` by Jakob Schäfer, Inc. All Rights Reserved.
+\documentclass[12pt,a4paper]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsthm}
+
+\setlength{\topmargin}{-15mm}
+
+\newtheorem{proposition}{Satz}[section]
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{lemma}[proposition]{Lemma}
+
+\numberwithin{equation}{section}
+
+\newcommand{\C}{\mathbb{C}} % komplexe
+\newcommand{\K}{\mathbb{K}} % komplexe
+\newcommand{\R}{\mathbb{R}} % reelle
+\newcommand{\Q}{\mathbb{Q}} % rationale
+\newcommand{\Z}{\mathbb{Z}} % ganze
+\newcommand{\N}{\mathbb{N}} % natuerliche
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % normfunktion
+
+\begin{document}
+$0
+\end{document}
+
+endsnippet
+snippet \begin "begin" b
+\begin{$1}
+\end{$1}
+endsnippet
+snippet ma "math inline"
+\($0\)
+endsnippet
+snippet \frac "bruch"
+\frac{$0}{}
+endsnippet

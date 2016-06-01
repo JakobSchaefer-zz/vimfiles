@@ -26,6 +26,9 @@ call vundle#begin()
 " Der PluginManager selbst
 Plugin 'gmarik/Vundle.vim'
 
+" latex
+Plugin 'latex-box-team/latex-box'
+
 " Alles rundum Klammerungen
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
@@ -71,9 +74,6 @@ Plugin 'bling/vim-airline'
 " Ermöglicht ein Projektspezifisches vimrc einfach 'lvimrc' nennen
 Plugin 'embear/vim-localvimrc'
 
-" Großes Plugin zum bewegen quer durch den Text
-Plugin 'easymotion/vim-easymotion'
-
 call vundle#end()
 
 filetype plugin indent on
@@ -94,8 +94,6 @@ let g:localvimrc_ask = 0
 let g:localvimrc_name = "lvimrc"
 
 let delimitMate_expand_cr = 1
-
-map \ <Plug>(easymotion-prefix)
 
 " BASICS
 set history=1000
@@ -263,6 +261,7 @@ nnoremap <A-j> <c-d>
 nnoremap + ~
 
 nmap <space> .
+nnoremap ß /
 
 nnoremap ´ `
 onoremap ´ `

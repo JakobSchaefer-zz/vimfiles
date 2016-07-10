@@ -12,18 +12,28 @@ $0
 </body>
 </html>
 endsnippet
-snippet body "body tag" b
-<body$0>
+snippet skelui5 "sapui5 basic tag" b
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<script id="sap-ui-bootstrap" src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="async" ></script>
+	<script>
+	sap.ui.getCore().attachInit(function () {
+		// todo$0
+	});
+	</script>
+</head>
+
+<body class="sapUiBody" id="content">
 </body>
+</html>
 endsnippet
-snippet script "script tag" b
-<script$0>
-</script>
-endsnippet
-snippet div "div tag" b
-<div$0>
-</div>
-endsnippet
-snippet br "br tag"
-<br$0/>
+snippet t "tag"
+<$1></$1>
 endsnippet

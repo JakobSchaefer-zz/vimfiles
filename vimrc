@@ -40,9 +40,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'ervandew/supertab'
 
 " Colorschemes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'chriskempson/base16-vim'
+Plugin 'rakr/vim-two-firewatch'
 
 " Ermöglicht das tauschen von beliebigen Textobjekten
 Plugin 'tommcdo/vim-exchange'
@@ -70,6 +68,7 @@ Plugin 'glts/vim-textobj-comment'
 
 " Hübschere Statusleiste mit mehr Informationen
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Ermöglicht ein Projektspezifisches vimrc einfach 'lvimrc' nennen
 Plugin 'embear/vim-localvimrc'
@@ -137,7 +136,8 @@ set t_Co=256
 " set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
 set background=dark
-colorscheme solarized
+colorscheme two-firewatch
+let g:two_firewatch_italics=1
 set encoding=utf8
 set ffs=unix,dos,mac
 set listchars=eol:¬,tab:»·,trail:·
@@ -153,9 +153,9 @@ set noswapfile
 """""""""""""""""""""" TABS UND ZEILENUMBRUECHE """"""""""""""""""""""""""""""
 set smarttab
 set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set linebreak
 set tw=500 " Zeilenumbruch nach 500 Zeichen
 set autoindent

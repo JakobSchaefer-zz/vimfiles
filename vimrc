@@ -1,4 +1,4 @@
-"TODO: - substitute command?
+﻿"TODO: - substitute command?
 
 if has("gui_running")
   set guioptions-=m  " entfernt menu bar
@@ -26,6 +26,9 @@ call vundle#begin()
 " Der PluginManager selbst
 Plugin 'gmarik/Vundle.vim'
 
+" Startbildschirm
+Plugin 'mhinz/vim-startify'
+
 " latex
 Plugin 'latex-box-team/latex-box'
 
@@ -41,6 +44,7 @@ Plugin 'ervandew/supertab'
 
 " Colorschemes
 Plugin 'rakr/vim-two-firewatch'
+Plugin 'tomasr/molokai'
 
 " Ermöglicht das tauschen von beliebigen Textobjekten
 Plugin 'tommcdo/vim-exchange'
@@ -50,6 +54,9 @@ Plugin 'tomtom/tcomment_vim'
 
 " Fuzzyfinder für Dateien und Tags
 Plugin 'kien/ctrlp.vim'
+
+" Tagbar
+Plugin 'majutsushi/tagbar'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
@@ -86,13 +93,17 @@ let g:UltiSnipsUsePythonVersion = 2
 " Blockt sonst das tetobject comment
 let g:tcommentTextObjectInlineComment = ''
 
-let g:molokai_original = 1
+let g:molokai_original = 0
 
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
 let g:localvimrc_name = "lvimrc"
 
 let delimitMate_expand_cr = 1
+
+nmap <F5> :SSave<CR>
+nmap <F6> :SLoad<CR>
+nmap <F8> :TagbarToggle<CR>
 
 " BASICS
 set history=1000
@@ -136,7 +147,7 @@ set t_Co=256
 " set statusline-=%t
 """"""""""""""""""""" FARBEN UND FORMATIERUNGEN """"""""""""""""""""""""""""""
 set background=dark
-colorscheme two-firewatch
+colorscheme molokai
 let g:two_firewatch_italics=1
 set encoding=utf8
 set ffs=unix,dos,mac
@@ -194,14 +205,11 @@ vnoremap K 5k
 onoremap J 5j
 onoremap K 5k
 
+
 " ------------ copy and paste ala ctrl-c ctrl-v
-nnoremap <c-c> V:y+<cr>
 nnoremap <c-v> :put +<cr>
-
-vnoremap <c-c> :y+<cr>
-vnoremap <c-v> :put +<cr>
-
-inoremap <c-v> <c-r>*
+vnoremap <c-c> "+y<cr>
+inoremap <c-v> <c-r>+
 
 
 " ------------ Verhindert capslock durch shift backspace
@@ -270,12 +278,22 @@ vnoremap ´ `
 nnoremap <F1> :set background=dark<cr>
 nnoremap <F2> :set background=light<cr>
 
+compiler msvc
+
+function! Build()
+  set makeprg=build.bat
+  silent make
+  botright copen
+endfunction
+
+nnoremap <A-b> :call Build()<cr><c-w>k
+nnoremap <A-n> :cn<cr>
+nnoremap <A-p> :cp<cr>
+
 function! CreateNewlineBelow()
   normal! mmo
   normal! `m
 endfunction
-
-nnoremap <a-o> :call CreateNewlineBelow()<cr>
 
 if has("win32") || has('win64')
   set wildignore+=*.git,*.hg,*.svn,*.dll,*.pdb,*.exe,*.obj,*.o,*.a,*.jpg,*.png,*.tga,*.sln,*.opensdf,*.sdf,*.exp,*.lib

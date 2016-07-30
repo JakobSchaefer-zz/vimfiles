@@ -1,10 +1,10 @@
 snippet skel "c files Header" b
-// #####################################################################################
+// #############################################################################
 // File Name: `!v expand('%:t')`
 // Creation Date: `!v strftime("%d.%m.%Y")`
 // Created By: Jakob Schäfer
 // Notice: (C) Copyright `!v strftime("%Y")` by Jakob Schäfer, Inc. All Rights Reserved.
-// #####################################################################################
+// #############################################################################
 $0
 endsnippet
 snippet com "comment"
@@ -26,4 +26,9 @@ snippet hguard "header guard" b
 #ifndef $1
 #define $1
 #endif // $1
+endsnippet
+snippet struct "struct" b
+struct $0
+{
+};
 endsnippet

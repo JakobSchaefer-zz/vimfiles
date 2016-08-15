@@ -4,3 +4,4 @@ function! InsertCurlyBrackets()
 endfunction
 
 nnoremap <leader>cb :call InsertCurlyBrackets()<cr>O
+inoremap <leader>. ->

@@ -53,7 +53,7 @@ Plugin 'tommcdo/vim-exchange'
 Plugin 'tomtom/tcomment_vim'
 
 " Fuzzyfinder für Dateien und Tags
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Tagbar
 Plugin 'majutsushi/tagbar'
@@ -100,6 +100,7 @@ let g:localvimrc_ask = 0
 let g:localvimrc_name = "lvimrc"
 
 let delimitMate_expand_cr = 1
+let g:startify_change_to_dir = 0
 
 nmap <F5> :SSave<CR>
 nmap <F6> :SLoad<CR>
@@ -259,21 +260,25 @@ nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>. :CtrlPTag<cr>
 
 
+" ------------ *Substitute* command
+vnoremap s "0p
+
 " ------------ misc
 nnoremap # /<c-r><c-w><CR>N
 nnoremap * <c-]>
+nnoremap ^ ''
+nnoremap ´ `
+nnoremap m mm
+nnoremap M `m
 
-nnoremap <A-k> <c-u>
-nnoremap <A-j> <c-d>
+nnoremap <A-k> :bd<CR>
+nnoremap <A-n> :bn<cr>
+nnoremap <A-p> :bp<cr>
 
 nnoremap + ~
 
 nmap <space> .
 nnoremap ß /
-
-nnoremap ´ `
-onoremap ´ `
-vnoremap ´ `
 
 nnoremap <F1> :set background=dark<cr>
 nnoremap <F2> :set background=light<cr>
@@ -287,8 +292,6 @@ function! Build()
 endfunction
 
 nnoremap <A-b> :call Build()<cr><c-w>k
-nnoremap <A-n> :cn<cr>
-nnoremap <A-p> :cp<cr>
 
 function! CreateNewlineBelow()
   normal! mmo

@@ -197,14 +197,14 @@ inoremap <A-l> <esc>la
 inoremap <A-n> <esc>la,<space>
 
 " ------------
-nnoremap J 5j
-nnoremap K 5k
+nnoremap J }
+nnoremap K {
 
-vnoremap J 5j
-vnoremap K 5k
+vnoremap J }
+vnoremap K {
 
-onoremap J 5j
-onoremap K 5k
+onoremap J }
+onoremap K {
 
 
 " ------------ copy and paste ala ctrl-c ctrl-v
